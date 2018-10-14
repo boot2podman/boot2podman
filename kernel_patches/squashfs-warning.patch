@@ -1,0 +1,13 @@
+diff --git a/fs/squashfs/super.c b/fs/squashfs/super.c
+index 260e392..c423a29 100644
+--- a/fs/squashfs/super.c
++++ b/fs/squashfs/super.c
+@@ -123,7 +123,7 @@ static int squashfs_fill_super(struct super_block *sb, void *data, int silent)
+ 	sb->s_magic = le32_to_cpu(sblk->s_magic);
+ 	if (sb->s_magic != SQUASHFS_MAGIC) {
+ 		if (!silent)
+-			ERROR("Can't find a SQUASHFS superblock on %pg\n",
++			WARNING("Can't find a SQUASHFS superblock on %pg\n",
+ 						sb->s_bdev);
+ 		goto failed_mount;
+ 	}

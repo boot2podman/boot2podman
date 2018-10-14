@@ -1,0 +1,37 @@
+diff --git a/drivers/pnp/isapnp/core.c b/drivers/pnp/isapnp/core.c
+index 918d5f0..972fde6 100644
+--- a/drivers/pnp/isapnp/core.c
++++ b/drivers/pnp/isapnp/core.c
+@@ -41,6 +41,7 @@
+ #include <linux/init.h>
+ #include <linux/isapnp.h>
+ #include <linux/mutex.h>
++#include <linux/async.h>
+ #include <asm/io.h>
+ 
+ #include "../base.h"
+@@ -1001,7 +1002,7 @@ struct pnp_protocol isapnp_protocol = {
+ 	.disable = isapnp_disable_resources,
+ };
+ 
+-static int __init isapnp_init(void)
++static int __init real_isapnp_init(void)
+ {
+ 	int cards;
+ 	struct pnp_card *card;
+@@ -1095,6 +1096,15 @@ static int __init isapnp_init(void)
+ 	return 0;
+ }
+ 
++static void __init async_isapnp_init(void *unused, async_cookie_t cookie)
++{
++	(void)real_isapnp_init();
++}
++
++static int __init isapnp_init(void)
++{
++       async_schedule(async_isapnp_init, NULL);
++}
+ device_initcall(isapnp_init);
+ 
+ /* format is: noisapnp */
