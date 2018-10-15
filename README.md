@@ -36,7 +36,7 @@ CONFIG_MEMCG=y
 CONFIG_OVERLAY_FS=y
 ```
 
-We install the required `go` compiler environment by [building from source code](go_building.md).
+We install the required `go` compiler environment by [building from source code](building_go.md).
 
 Then we install `podman` and other dependencies by [building from source code](https://github.com/containers/libpod/blob/master/install.md).
 
