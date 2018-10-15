@@ -25,6 +25,26 @@ Here showing a simple login session, from an early development version:
 
 ![screenshot logo](screenshot.png)
 
+## Installation
+
+Currently based on [CorePure64-9.0.iso](http://www.tinycorelinux.net/9.x/x86_64/release/CorePure64-9.0.iso), but with a [custom kernel](custom_kernel.md) (4.14.10 -> 4.14.76)
+
+We need support for `cgroupfs` (including "memory") and for `overlayfs` (on ext4).
+
+``` txt
+CONFIG_MEMCG=y
+CONFIG_OVERLAY_FS=y
+```
+
+We install the required `go` compiler environment by [building from source code](go_building.md).
+
+Then we install `podman` and other dependencies by [building from source code](https://github.com/containers/libpod/blob/master/install.md).
+
+* runc
+* conmon
+* cni-plugins
+* cgroupfs-mount
+
 ### Persist data
 
 Boot2podman uses [Tiny Core Linux](http://tinycorelinux.net), which runs from
