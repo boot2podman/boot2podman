@@ -25,6 +25,12 @@ Here showing a simple login session, from an early development version:
 
 ![screenshot logo](screenshot.png)
 
+## Artwork
+
+The boot2podman logo is based on the original [podman](https://github.com/containers/libpod) logo and the [Montserrat](https://github.com/JulietaUla/Montserrat) font.
+
+The text logo is based on http://ascii.co.uk/art/seal and `figlet -f ascii12 podman`.
+
 ## Installation
 
 Currently based on [CorePure64-9.0.iso](http://www.tinycorelinux.net/9.x/x86_64/release/CorePure64-9.0.iso), but with a [custom kernel](custom_kernel.md) (4.14.10 -> 4.14.76)
