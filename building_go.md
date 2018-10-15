@@ -12,9 +12,9 @@ https://golang.org/doc/install/source
 Compile time:
 
 ``` sh
-tce-load -i gcc.tcz
-tce-load -i bash.tcz
-tce-load -i squashfs-tools.tcz
+tce-load -wi compiletc
+tce-load -wi bash
+tce-load -wi squashfs-tools
 ```
 
 ## Bootstrap
@@ -72,15 +72,14 @@ go version go1.10.4 linux/amd64
 Runtime:
 
 ``` sh
-tce-load -i git.tcz
-tce-load -i ca-certificates.tcz
+tce-load -wi git
 ```
 
 There is yet no support for `/usr/local/etc/ssl/certs`:
 
 ``` sh
 # TODO: patch this into the source code
-sudo ln -s /usr/local/etc/ssl /etc/ssl
+export SSL_CERT_FILE=/usr/local/etc/ssl/certs/ca-certificates.crt
 ```
 
 Issue tracker: https://github.com/golang/go/issues/28199
@@ -101,7 +100,7 @@ export PATH=$GOPATH/bin:$PATH
 Included in the binary downloads, but not in the source ?
 
 ``` sh
-go get -u golang.org/x/tools/cmd/godoc
+go get golang.org/x/tools/cmd/godoc
 ```
 
 ## Hello World
