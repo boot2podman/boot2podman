@@ -55,6 +55,36 @@ The `varlink` command line tool can be installed [from source](https://github.co
 
 We can also add `buildah` and its dependencies, by [building from source code](https://github.com/containers/buildah/blob/master/install.md).
 
+## Configuration
+
+The software does not work after installation, without some mandatory registries and policies config done.
+
+Location of the configuration is currently hard-coded to `/etc/containers`, so it needs a symlink set up...
+
+[registries.conf](registries.conf)
+``` toml
+[registries.search]
+registries = ['docker.io', 'quay.io']
+
+[registries.insecure]
+registries = []
+
+#blocked (docker only)
+[registries.block]
+registries = []
+```
+
+[policy.json](policy.json)
+``` json
+{
+    "default": [
+        {
+            "type": "insecureAcceptAnything"
+        }
+    ]
+}
+```
+
 ### Persist data
 
 Boot2podman uses [Tiny Core Linux](http://tinycorelinux.net), which runs from
