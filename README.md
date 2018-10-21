@@ -1,6 +1,6 @@
 ![boot2podman logo](logo.png)
 # boot2podman
-
+b
 Boot2podman is a lightweight Linux distribution made specifically to run
 **Podman** containers. It runs completely from RAM, is a
 ~45MB download.
@@ -83,6 +83,37 @@ registries = []
         }
     ]
 }
+```
+
+We need to make sure to use "cgroupfs" (not "systemd") and to disable "pivot_root" (to run under tmpfs).
+
+Also the standard paths in `usr/local` are missing from the libpod defaults, so set the paths explicitly.
+
+[libpod.conf](libpod.conf)
+``` toml
+# Paths to look for a valid OCI runtime (runc, runv, etc)
+runtime_path = [
+	     "/usr/local/sbin/runc"
+]
+
+# Paths to look for the Conmon container manager binary
+conmon_path = [
+	    "/usr/local/lib/podman/conmon"
+]
+
+# CGroup Manager - valid values are "systemd" and "cgroupfs"
+cgroup_manager = "cgroupfs"
+
+# Whether to use chroot instead of pivot_root in the runtime
+no_pivot_root = true
+
+# Directory containing CNI plugin configuration files
+cni_config_dir = "/usr/local/etc/cni/net.d/"
+
+# Directories where the CNI plugin binaries may be located
+cni_plugin_dir = [
+	       "/usr/local/lib/cni"
+]
 ```
 
 ### Persist data
