@@ -2,7 +2,7 @@
 # boot2podman
 
 Boot2podman is a lightweight Linux distribution made specifically to run
-[Podman](https://podmain.io/) containers. It runs completely from RAM, is a
+**Podman** containers. It runs completely from RAM, is a
 ~45MB download.
 
 ## Features
@@ -15,9 +15,9 @@ Boot2podman is a lightweight Linux distribution made specifically to run
 ## Details
 
 * Linux 4.14, with support for `cgroupfs`and `overlayfs` configured
-* Podman and its dependencies like: `conmon`, `cni-plugins`, `runc`
+* [Podman](https://podman.io/) and its dependencies like: `conmon`, `cni-plugins`, `runc`
 * Varlink support for running remotely (being tunneled over SSH)
-* Buildah support for building OCI container images _(coming soon)_
+* [Buildah](https://buildah.io/) support for building OCI container images _(coming soon)_
 
 ## Sample session
 
