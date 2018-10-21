@@ -51,6 +51,10 @@ Then we install `podman` and other dependencies by [building from source code](h
 * cni-plugins
 * cgroupfs-mount
 
+The `varlink` command line tool can be installed [from source](https://github.com/varlink/libvarlink), using "meson".
+
+We can also add `buildah` and its dependencies, by [building from source code](https://github.com/containers/buildah/blob/master/install.md).
+
 ### Persist data
 
 Boot2podman uses [Tiny Core Linux](http://tinycorelinux.net), which runs from
