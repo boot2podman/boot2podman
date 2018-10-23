@@ -16,8 +16,8 @@ Boot2podman is a lightweight Linux distribution made specifically to run
 
 * Linux 4.14, with support for `cgroupfs`and `overlayfs` configured
 * [Podman](https://podman.io/) and its dependencies like: `runc`, `conmon`, `cni-plugins`
-* Varlink support for running remotely (being tunneled over SSH)
-* [Buildah](https://buildah.io/) support for building OCI container images _(coming soon)_
+* [Varlink](https://varlink.org) support for running remotely (being tunneled over SSH)
+* [Buildah](https://buildah.io/) support for building OCI container images
 
 ## Sample session
 
