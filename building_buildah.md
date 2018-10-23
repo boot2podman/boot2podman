@@ -25,6 +25,10 @@ commands which are run in that namespace are effectively disconnected from the
 network unless additional setup is done.  Buildah relies on the CNI library and plugins to set up interfaces
 and routing for network namespaces.
 
+Sample configuration, for `/usr/local/etc/cni/net.d`:
+* bridge
+* loopback
+
 ## Build and Run Dependencies
 
 ### Build
@@ -36,6 +40,9 @@ $ go get github.com/containers/buildah
 $ cd $GOPATH/src/github.com/containers/buildah
 $ make
 $ sudo install -D -m0755 buildah /usr/local/bin/buildah
+
+$ sudo mkdir /usr/local/etc/cni/net.d
+$ sudo install -v -m644 docs/cni-examples/*.conf /usr/local/etc/cni/net.d
 ```
 
 ### Runtime
