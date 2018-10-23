@@ -51,7 +51,7 @@ Then we install `podman` and other dependencies by [building from source code](b
 * cni-plugins
 * cgroupfs-mount
 
-The `varlink` command line tool can be installed [from source](https://github.com/varlink/libvarlink), using "meson".
+The `varlink` command line tool can be installed by [building from source code](building_varlink.md).
 
 We can also add `buildah` and its dependencies, by [building from source code](https://github.com/containers/buildah/blob/master/install.md).
 
