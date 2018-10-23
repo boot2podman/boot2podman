@@ -53,7 +53,7 @@ Then we install `podman` and other dependencies by [building from source code](b
 
 The `varlink` command line tool can be installed by [building from source code](building_varlink.md).
 
-We can also add `buildah` and its dependencies, by [building from source code](https://github.com/containers/buildah/blob/master/install.md).
+We can also add `buildah` and its dependencies, by [building from source code](building_buildah.md).
 
 ## Configuration
 
