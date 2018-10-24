@@ -93,3 +93,13 @@ The libpod configuration directory is hardcoded:
 mkdir -p /usr/local/etc/containers
 ln -s /usr/local/etc/containers /etc/containers
 ```
+
+Need to mount the necessary cgroupfs directories:
+
+``` console
+$ git clone https://github.com/tianon/cgroupfs-mount
+$ cd cgroupfs-mount
+
+$ sudo ./cgroupfs-mount
+# needs to go in bootsync.sh
+```
