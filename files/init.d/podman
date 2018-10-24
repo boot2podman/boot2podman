@@ -1,0 +1,25 @@
+#!/bin/sh
+
+case "${1}" in
+	start)
+		if [ ! -d /run/podman ]
+		then
+			# d /run/podman 0700 root root
+			mkdir -p /run/podman
+			chown root:root /run/podman
+			chmod 0700 /run/podman
+		fi
+		podman --timeout 0 varlink unix:/var/run/podman.sock &
+		ln -s /var/run/podman.sock /run/podman/io.podman
+		;;
+	stop)
+		rm -f /run/podman/io.podman
+		pkill podman
+		;;
+	status)
+		pidof podman
+		;;
+	*)
+		exit 1
+		;;
+esac
