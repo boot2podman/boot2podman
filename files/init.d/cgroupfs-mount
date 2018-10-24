@@ -1,0 +1,20 @@
+#!/bin/sh
+
+case "${1}" in
+	start)
+		cgroupfs-mount
+		;;
+	stop)
+		cgroupfs-umount
+		;;
+	status)
+		if mountpoint -q /sys/fs/cgroup; then
+			exit 0
+		else
+			exit 1
+		fi
+		;;
+	*)
+		exit 1
+		;;
+esac
