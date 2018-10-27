@@ -30,6 +30,12 @@ Start the podman service, and set up a symlink.
 # ln -s /var/run/podman.sock /run/podman/io.podman
 ```
 
+Normally this is done by using the init script:
+
+``` console
+$ sudo /usr/local/etc/init.d/podman start
+```
+
 ## Podman info
 
 Test the connection, by running a simple `info`:
