@@ -78,10 +78,6 @@ registries = ['docker.io', 'quay.io']
 
 [registries.insecure]
 registries = []
-
-#blocked (docker only)
-[registries.block]
-registries = []
 ```
 
 [policy.json](policy.json)
