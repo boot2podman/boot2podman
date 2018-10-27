@@ -60,10 +60,10 @@ cd go/src
 export GOROOT_FINAL=/usr/local/go
 ./make.bash
 cd -
-rm -r go/pkg/bootstrap
-rm -r go/pkg/tool/linux_amd64/api
-rm -r go/pkg/linux_amd64/cmd
-rm -r go/pkg/obj
+rm -rf go/pkg/bootstrap
+rm -rf go/pkg/tool/linux_amd64/api
+rm -rf go/pkg/linux_amd64/cmd
+rm -rf go/pkg/obj
 mkdir -p /tmp/go/usr/local
 mv go /tmp/go/usr/local/go
 mksquashfs /tmp/go go.tcz
