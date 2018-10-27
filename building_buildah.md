@@ -38,6 +38,8 @@ $ tce-load -wi libseccomp-dev lvm2-dev glib2-dev gpgme-dev
 
 $ go get github.com/containers/buildah
 $ cd $GOPATH/src/github.com/containers/buildah
+$ sed -e 's|"/etc/cni|"/usr/local/etc/cni|' -i util/types.go
+$ sed -e 's|/usr/libexec/cni:/opt/cni/bin|/usr/local/lib/cni|' -i util/types.go
 $ make
 $ sudo install -D -m0755 buildah /usr/local/bin/buildah
 

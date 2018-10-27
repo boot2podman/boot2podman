@@ -73,6 +73,8 @@ $ tce-load -wi libseccomp-dev gpgme-dev
 
 $ go get github.com/containers/libpod
 $ cd $GOPATH/src/github.com/containers/libpod
+$ sed -e 's|"/etc/cni|"/usr/local/etc/cni|' -i libpod.conf
+$ sed -e 's|"/etc/cni|"/usr/local/etc/cni|' -i libpod/runtime.go
 $ make
 $ sudo install -D -m 755 bin/podman /usr/local/bin/podman
 ```

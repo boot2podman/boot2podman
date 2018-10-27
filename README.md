@@ -59,8 +59,6 @@ We can also add `buildah` and its dependencies, by [building from source code](b
 
 The software does not work after installation, without some mandatory registries and policies config done.
 
-Location of the configuration is currently hard-coded to `/etc/containers`, so it needs a symlink set up...
-
 [registries.conf](registries.conf)
 ``` toml
 [registries.search]
@@ -87,8 +85,6 @@ registries = []
 
 We need to make sure to use "cgroupfs" (not systemd) and to disable "pivot_root" (to run under tmpfs).
 
-Also the configuration in `/usr/local/etc` is missing from the libpod defaults, so set the path explicitly.
-
 [libpod.conf](libpod.conf)
 ``` toml
 # CGroup Manager - valid values are "systemd" and "cgroupfs"
@@ -96,10 +92,8 @@ cgroup_manager = "cgroupfs"
 
 # Whether to use chroot instead of pivot_root in the runtime
 no_pivot_root = true
-
-# Directory containing CNI plugin configuration files
-cni_config_dir = "/usr/local/etc/cni/net.d/"
 ```
+Location of the configuration is currently hard-coded to `/etc/containers`, so it is not included...
 
 ### Persist data
 
