@@ -67,6 +67,40 @@ The `varlink` command line tool can be installed by [building from source code](
 
 We can also add `buildah` and its dependencies, by [building from source code](building_buildah.md).
 
+## Packages
+
+Here are the binary packages that are produced, after building from source code.
+
+### Build
+
+These packages are used for building:
+
+* [compiletc.tcz](http://www.tinycorelinux.net/9.x/x86_64/tcz/compiletc.tcz) 54M*
+  * gcc.tcz
+  * glibc_base-dev.tcz
+  * make.tcz
+  * pkg-config.tcz
+  * ...
+* [git.tcz](http://www.tinycorelinux.net/9.x/x86_64/tcz/git.tcz) 5.7M*
+* [go.tcz](https://dl.bintray.com/boot2podman/tinycorelinux/9.x/x86_64/tcz/go.tcz) 75M*
+
+\* total size, including dependencies (see .tree and .dep)
+
+### Runtime
+
+These packages are used at runtime:
+
+* **podman.tcz** 11M
+  * runc.tcz
+  * conmon.tcz
+  * cni-plugins.tcz
+  * ...
+* **varlink.tcz** 172K
+* **buildah.tcz** 5.5M
+  * runc.tcz
+  * cni-plugins.tcz
+  * ...
+
 ## Configuration
 
 The software does not work after installation, without some mandatory registries and policies config done.
