@@ -7,6 +7,10 @@ https://golang.org/doc/install/source
 * **go-bootstrap** (temporary version, written in C)
 * **go** (final version, written in go - needs bootstrap)
 
+Some secret undocumented cleanup tricks, can be found inside the go source code of the `release` command:
+
+https://godoc.org/golang.org/x/build/cmd/release
+
 ## Prerequisites
 
 Compile time:
@@ -52,6 +56,10 @@ cd go/src
 export GOROOT_FINAL=/usr/local/go
 ./make.bash
 cd -
+rm -r go/pkg/bootstrap
+rm -r go/pkg/tool/linux_amd64/api
+rm -r go/pkg/linux_amd64/cmd
+rm -r go/pkg/obj
 mkdir -p /tmp/go/usr/local
 mv go /tmp/go/usr/local/go
 mksquashfs /tmp/go go.tcz
@@ -97,11 +105,23 @@ export PATH=$GOPATH/bin:$PATH
 
 ## Install godoc
 
-Included in the binary downloads, but not in the source ?
+Included in the binary downloads, but not with the source ?
 
 ``` sh
 go get golang.org/x/tools/cmd/godoc
 ```
+
+Available online, as: https://godoc.org/-/go
+
+## Install tour
+
+Install the go tour, if wanted. It was still included, in 1.10.
+
+``` sh
+go get golang.org/x/tour
+```
+
+Available online, as: https://tour.golang.org/
 
 ## Hello World
 
