@@ -89,13 +89,6 @@ $ tce-load -wi socat util-linux iptables iproute2
 $ tce-load -wi ca-certificates bridge-utils
 ```
 
-The libpod configuration directory is hardcoded:
-
-``` sh
-mkdir -p /usr/local/etc/containers
-ln -s /usr/local/etc/containers /etc/containers
-```
-
 Need to mount the necessary cgroupfs directories:
 
 ``` console
