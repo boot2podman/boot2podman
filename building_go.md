@@ -2,6 +2,10 @@
 
 Go is an open source programming language that makes it easy to build simple, reliable, and efficient software.
 
+https://golang.org/
+
+## Installation
+
 https://golang.org/doc/install/source
 
 * **go-bootstrap** (temporary version, written in C)
