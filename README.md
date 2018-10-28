@@ -90,10 +90,10 @@ These packages are used for building:
 
 These packages are used at runtime:
 
-* **podman.tcz** 11M
-  * runc.tcz
-  * conmon.tcz
-  * cni-plugins.tcz
+* [podman.tcz](https://dl.bintray.com/boot2podman/tinycorelinux/9.x/x86_64/tcz/podman.tcz) 11M
+  * runc.tcz 2.8M
+  * conmon.tcz 24K
+  * cni-plugins.tcz 17M
   * ...
 * **varlink.tcz** 172K
 * **buildah.tcz** 5.5M
