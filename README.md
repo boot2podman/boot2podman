@@ -105,7 +105,7 @@ These packages are used at runtime:
 
 The software does not work after installation, without some mandatory registries and policies config done.
 
-[registries.conf](registries.conf)
+[/etc/containers/registries.conf](files/containers/registries.conf)
 ``` toml
 [registries.search]
 registries = ['docker.io', 'quay.io']
@@ -114,7 +114,7 @@ registries = ['docker.io', 'quay.io']
 registries = []
 ```
 
-[policy.json](policy.json)
+[/etc/containers/policy.json](files/containers/policy.json)
 ``` json
 {
     "default": [
@@ -127,7 +127,7 @@ registries = []
 
 We need to make sure to use "cgroupfs" (not systemd) and to disable "pivot_root" (to run under tmpfs).
 
-[libpod.conf](libpod.conf)
+[/etc/containers/libpod.conf](files/containers/libpod.conf)
 ``` toml
 # CGroup Manager - valid values are "systemd" and "cgroupfs"
 cgroup_manager = "cgroupfs"
@@ -135,7 +135,7 @@ cgroup_manager = "cgroupfs"
 # Whether to use chroot instead of pivot_root in the runtime
 no_pivot_root = true
 ```
-Location of the configuration is currently hard-coded to `/etc/containers`, so it is not included...
+Location of the configuration is currently hard-coded to `/etc/containers`, so it is not included in tcz...
 
 ### Persist data
 
