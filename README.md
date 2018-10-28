@@ -96,7 +96,7 @@ These packages are used at runtime:
   * cni-plugins.tcz 17M
   * ...
 * [varlink.tcz](https://dl.bintray.com/boot2podman/tinycorelinux/9.x/x86_64/tcz/varlink.tcz) 44K
-* **buildah.tcz** 5.5M
+* [buildah.tcz](https://dl.bintray.com/boot2podman/tinycorelinux/9.x/x86_64/tcz/buildah.tcz) 6M
   * runc.tcz
   * cni-plugins.tcz
   * ...
