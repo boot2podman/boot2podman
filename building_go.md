@@ -57,6 +57,7 @@ https://dl.google.com/go/go1.10.4.src.tar.gz
 ``` sh
 tar xzf go1.10.4.src.tar.gz
 cd go/src
+patch -Np2 -i ../../go-1.10.4-ca-certificates.patch
 export GOROOT_FINAL=/usr/local/go
 ./make.bash
 cd -
@@ -90,9 +91,11 @@ tce-load -wi git
 There is yet no support for `/usr/local/etc/ssl/certs`:
 
 ``` sh
-# TODO: patch this into the source code
 export SSL_CERT_FILE=/usr/local/etc/ssl/certs/ca-certificates.crt
+export SSL_CERT_DIR=/usr/local/share/ca-certificates
 ```
+
+Support for TinyCore ssl has been patched into go, above.
 
 Issue tracker: https://github.com/golang/go/issues/28199
 

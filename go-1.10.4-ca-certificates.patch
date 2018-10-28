@@ -1,0 +1,22 @@
+diff --git a/src/crypto/x509/root_linux.go b/src/crypto/x509/root_linux.go
+index aa1785e..755af89 100644
+--- a/src/crypto/x509/root_linux.go
++++ b/src/crypto/x509/root_linux.go
+@@ -11,4 +11,5 @@ var certFiles = []string{
+ 	"/etc/ssl/ca-bundle.pem",                            // OpenSUSE
+ 	"/etc/pki/tls/cacert.pem",                           // OpenELEC
+ 	"/etc/pki/ca-trust/extracted/pem/tls-ca-bundle.pem", // CentOS/RHEL 7
++	"/usr/local/etc/ssl/certs/ca-certificates.crt",      // TinyCore
+ }
+diff --git a/src/crypto/x509/root_unix.go b/src/crypto/x509/root_unix.go
+index 65b5a5f..762835e 100644
+--- a/src/crypto/x509/root_unix.go
++++ b/src/crypto/x509/root_unix.go
+@@ -19,6 +19,7 @@ var certDirectories = []string{
+ 	"/usr/local/share/certs",       // FreeBSD
+ 	"/etc/pki/tls/certs",           // Fedora/RHEL
+ 	"/etc/openssl/certs",           // NetBSD
++	"/usr/local/share/ca-certificates",
+ }
+ 
+ const (
