@@ -3,7 +3,7 @@
 
 Boot2podman is a lightweight Linux distribution made specifically to run
 **Podman** containers. It runs completely from RAM, is a
-~45MB download.
+~75MB download.
 
 ## Features
 
@@ -30,6 +30,10 @@ and modified and then an image can be saved based on the updated container.
 * [Podman](https://podman.io/) and its dependencies like: `runc`, `conmon`, `cni-plugins`
 * [Varlink](https://varlink.org) support for running remotely (being tunneled over SSH)
 * [Buildah](https://buildah.io/) support for building container images without daemon
+
+## Download
+
+ISO can be found in: https://github.com/boot2podman/boot2podman/releases
 
 ## Sample session
 
