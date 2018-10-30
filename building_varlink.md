@@ -24,7 +24,7 @@ $ sudo install -D -m 755 build/tool/varlink /usr/local/bin/varlink
 Start the podman service, and set up a symlink.
 
 ``` console
-# podman --timeout 0 varlink unix:/var/run/podman.sock &
+# podman varlink --timeout 0 unix:/var/run/podman.sock &
 # mkdir -p /run/podman
 # chmod 0700 /run/podman
 # ln -s /var/run/podman.sock /run/podman/io.podman
