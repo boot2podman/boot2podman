@@ -138,6 +138,9 @@ cgroup_manager = "cgroupfs"
 
 # Whether to use chroot instead of pivot_root in the runtime
 no_pivot_root = true
+
+# Directory containing CNI plugin configuration files
+cni_config_dir = "/usr/local/etc/cni/net.d/"
 ```
 Location of the configuration is currently hard-coded to `/etc/containers`, so it is not included in tcz...
 
