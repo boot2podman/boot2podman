@@ -69,7 +69,7 @@ $ sudo cp bin/* /usr/local/lib/cni
 ### Build
 
 ``` console
-$ tce-load -wi libseccomp-dev gpgme-dev
+$ tce-load -wi libseccomp-dev glib2-dev gpgme-dev bash
 
 $ go get github.com/containers/libpod
 $ cd $GOPATH/src/github.com/containers/libpod
