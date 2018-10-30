@@ -8,9 +8,8 @@ Boot2podman is a lightweight Linux distribution made specifically to run
 ## Features
 
 * Recent Linux Kernel, Podman pre-installed and ready-to-use
-* VM guest additions (VirtualBox, Parallels, VMware, XenServer)
 * Container persistence via disk automount on `/var/lib/containers`
-* SSH keys persistence via disk automount _(coming soon)_
+* SSH keys persistence via disk automount _(both features coming soon)_
 
 ### Podman
 
