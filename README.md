@@ -144,6 +144,18 @@ cni_config_dir = "/usr/local/etc/cni/net.d/"
 ```
 Location of the configuration is currently hard-coded to `/etc/containers`, so it is not included in tcz...
 
+### Networking
+
+Sample configuration, for `/usr/local/etc/cni/net.d`:
+* bridge
+* portmap
+* loopback
+
+Example config files can be found at these locations:
+* [libpod/cni/](https://github.com/containers/libpod/tree/master/cni)
+* [cri-o/contrib/cni/](https://github.com/kubernetes-sigs/cri-o/tree/master/contrib/cni)
+* [buildah/docs/cni-examples/](https://github.com/containers/buildah/tree/master/docs/cni-examples)
+
 ### Persist data
 
 Boot2podman uses [Tiny Core Linux](http://tinycorelinux.net), which runs from

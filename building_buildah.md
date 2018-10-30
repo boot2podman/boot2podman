@@ -22,12 +22,8 @@ will also be run in a separate network namespace.
 
 A newly-created network namespace starts with no network interfaces, so
 commands which are run in that namespace are effectively disconnected from the
-network unless additional setup is done.  Buildah relies on the CNI library and plugins to set up interfaces
-and routing for network namespaces.
-
-Sample configuration, for `/usr/local/etc/cni/net.d`:
-* bridge
-* loopback
+network unless additional setup is done.  Buildah relies on the CNI library
+and plugins to set up interfaces and routing for network namespaces.
 
 ## Build and Run Dependencies
 
@@ -42,9 +38,6 @@ $ sed -e 's|"/etc/cni|"/usr/local/etc/cni|' -i util/types.go
 $ sed -e 's|/usr/libexec/cni:/opt/cni/bin|/usr/local/lib/cni|' -i util/types.go
 $ make
 $ sudo install -D -m0755 buildah /usr/local/bin/buildah
-
-$ sudo mkdir /usr/local/etc/cni/net.d
-$ sudo install -v -m644 docs/cni-examples/*.conf /usr/local/etc/cni/net.d
 ```
 
 ### Runtime
