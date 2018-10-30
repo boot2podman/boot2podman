@@ -107,7 +107,7 @@ These packages are used at runtime:
 
 ## Configuration
 
-The software does not work after installation, without some mandatory registries and policies config done.
+The software does not work after installation, without some mandatory registries and policy config done.
 
 [/etc/containers/registries.conf](files/containers/registries.conf)
 ``` toml
