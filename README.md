@@ -11,24 +11,31 @@ Boot2podman is a lightweight Linux distribution made specifically to run
 * Container persistence via disk automount on `/var/lib/containers`
 * SSH keys persistence via disk automount _(both features coming soon)_
 
-### Podman
-
-Podman is a command line tool that allows for full management of a container's lifecycle from creation
-through removal. It supports multiple image formats including both the Docker and OCI image formats.
-Support for pods is provided allowing pods to manage groups of containers together.
-
-### Buildah
-
-The Buildah project provides a command line tool that be used to create an OCI or traditional Docker
-image format image and to then build a working container from the image.  The container can be mounted
-and modified and then an image can be saved based on the updated container.
-
 ## Details
 
 * Linux 4.14, with support for `cgroupfs`and `overlayfs` configured
 * [Podman](https://podman.io/) and its dependencies like: `runc`, `conmon`, `cni-plugins`
 * [Varlink](https://varlink.org) support for running remotely (being tunneled over SSH)
 * [Buildah](https://buildah.io/) support for building container images without daemon
+
+### Podman
+
+Podman is a command line tool that allows for full management of a container's
+lifecycle from creation through removal. It supports multiple image formats
+including both the Docker and OCI image formats. Support for pods is provided
+allowing pods to manage groups of containers together.
+
+### Varlink
+
+Varlink is an interface description format and protocol that aims to make
+services accessible to both humans and machines in the simplest feasible way.
+
+### Buildah
+
+The Buildah project provides a command line tool that be used to create an OCI
+or traditional Docker image format image and to then build a working container
+from the image. The container can be mounted and modified and then an image
+can be saved based on the updated container.
 
 ## Download
 
