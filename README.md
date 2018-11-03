@@ -7,7 +7,8 @@ Boot2podman is a lightweight Linux distribution made specifically to run
 
 ## Features
 
-* Recent Linux Kernel, Podman pre-installed and ready-to-use
+* Recent Linux Kernel, Podman / Buildah pre-installed and ready-to-use
+* Tools operate on [Open Container Initiative](https://www.opencontainers.org/) (OCI) images and containers.
 * Container persistence via disk automount on `/var/lib/containers`
 * SSH keys persistence via disk automount _(both features coming soon)_
 
@@ -20,22 +21,25 @@ Boot2podman is a lightweight Linux distribution made specifically to run
 
 ### Podman
 
-Podman is a command line tool that allows for full management of a container's
-lifecycle from creation through removal. It supports multiple image formats
-including both the Docker and OCI image formats. Support for pods is provided
-allowing pods to manage groups of containers together.
+> Podman is a command line tool that allows for full management of a container's
+> lifecycle from creation through removal. It supports multiple image formats
+> including both the Docker and OCI image formats. Support for pods is provided
+> allowing pods to manage groups of containers together.
 
 ### Varlink
 
-Varlink is an interface description format and protocol that aims to make
-services accessible to both humans and machines in the simplest feasible way.
+> Varlink is an interface description format and protocol that aims to make
+> services accessible to both humans and machines in the simplest feasible way.
 
 ### Buildah
 
-The Buildah project provides a command line tool that be used to create an OCI
-or traditional Docker image format image and to then build a working container
-from the image. The container can be mounted and modified and then an image
-can be saved based on the updated container.
+> The Buildah project provides a command line tool that be used to create an OCI
+> or traditional Docker image format image and to then build a working container
+> from the image. The container can be mounted and modified and then an image
+> can be saved based on the updated container.
+
+For more details on the project relationship, see the
+[Container Tools Guide](https://github.com/containers/buildah/tree/master/docs/containertools).
 
 ## Download
 
