@@ -1,0 +1,16 @@
+{
+  "services": [
+    {
+      "address": "unix:/run/org.varlink.resolver;mode=0666",
+      "interfaces": [
+        "org.varlink.resolver"
+      ]
+    },
+    {
+      "address": "unix:/run/podman/io.podman;mode=0600",
+      "interfaces": [
+        "io.podman"
+      ]
+    }
+  ]
+}
