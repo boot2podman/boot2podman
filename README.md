@@ -45,6 +45,22 @@ For more details on the project relationship, see the
 
 ISO can be found in: https://github.com/boot2podman/boot2podman/releases
 
+## Getting started
+
+**Please note that you need to run `podman` and `buildah` using `sudo`!**
+
+Eventually we should support using over `varlink` remotely, as well...
+
+### VirtualBox
+
+For now you need to mount the CD-ROM image (ISO) as IDE, not as SATA.
+
+### QEMU/KVM
+
+The default memory allocation (128 MiB) is too small to load everything:
+
+`qemu-system-x86_64 -enable-kvm -m 512 -cdrom boot2podman.iso`
+
 ## Sample session
 
 Here showing a simple login session, from an early development version:
