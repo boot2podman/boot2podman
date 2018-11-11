@@ -30,6 +30,8 @@ Boot2podman is a lightweight Linux distribution made specifically to run
 
 > Varlink is an interface description format and protocol that aims to make
 > services accessible to both humans and machines in the simplest feasible way.
+> A varlink interface has a reverse-domain name and specifies which methods the
+> interface implements. Each method has named and typed input and output parameters.
 
 ### Buildah
 
