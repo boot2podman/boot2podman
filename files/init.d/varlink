@@ -1,0 +1,18 @@
+#!/bin/sh
+
+sysconfdir=/usr/local/etc
+
+case "${1}" in
+	start)
+		resolver --varlink=unix:/run/org.varlink.resolver --config=$sysconfdir/varlink.json &
+		;;
+	stop)
+		pkill resolver
+		;;
+	status)
+		pidof resolver
+		;;
+	*)
+		exit 1
+		;;
+esac
