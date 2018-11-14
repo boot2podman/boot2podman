@@ -1,0 +1,130 @@
+#!/bin/sh
+set -e
+
+if [ "$(id -u)" != 0 ]; then
+	echo >&2 "error: must be root to invoke $0"
+	exit 1
+fi
+
+diskLabel='boot2podman-data'
+b2pMagic='boot2podman, please format-me'
+
+# use blockdev to return the disk with the biggest size
+_blockdev_report() {
+	# always ignore "zram" (compressed RAM)
+	blockdev --report "$@" \
+		| awk 'NR > 1 && $7 ~ /^\/dev\// { print $6, $7 }' \
+		| sort -nr \
+		| cut -d' ' -f2 \
+		| grep -vE '^/dev/zram[0-9]*$'
+}
+
+_find_device_to_format() {
+	local devices device deviceHeader deviceData
+
+	# get a list of all attached storage (excluding CDs like sr0 and partitions like sda1 and xvda3) listed in order from biggest to smallest
+	devices="$(_blockdev_report | grep -vE '^/dev/(sr[0-9]+|(s|xv)d[a-z]+[0-9]+)$' || :)"
+	[ -n "$devices" ] || return
+
+	# check all disks for magic string
+	for device in $devices; do
+		deviceHeader="$(dd if="$device" bs="${#b2pMagic}" count=1 2>/dev/null | tr -d '\0')" || continue
+		[ "$deviceHeader" = "$b2pMagic" ] || continue
+
+		# save the "userdata" tarball for later use
+		echo >&2 "Saving userdata.tar"
+		dd if="$device" of=/userdata.tar bs=4096 count=1 > /dev/null
+
+		echo "$device"
+		return
+	done
+
+	# otherwise, return first unpartitioned disk
+	for device in $devices; do
+		deviceData="$(blkid "$device" 2>/dev/null || :)"
+		[ -z "$deviceData" ] || continue
+		echo "$device"
+		return
+	done
+}
+
+_find_device() {
+	local device
+
+	# check for an existing data partition (with the right label)
+	device="$(blkid -o device -l -t "LABEL=$diskLabel" || :)"
+	if [ -n "$device" ]; then
+		echo "$device"
+		return
+	fi
+
+	device="$(_find_device_to_format || :)"
+	[ -n "$device" ] || return
+
+	echo >&2 "Partitioning $device"
+	{
+		# use entire disk for boot2podman data
+		echo n; echo p; echo 1; echo; echo
+
+		# write it!
+		echo w
+	} | fdisk "$device" > /dev/null
+
+	echo >&2 "Formatting ${device}1 (ext4)"
+	mkfs.ext4 -q -L "$diskLabel" "${device}1" > /dev/null
+
+	echo "${device}1"
+	return
+}
+
+_mount() {
+	local device partName
+
+	device="$(_find_device || :)"
+	[ -n "$device" ] || return
+
+	partName="$(basename "$device")"
+	mkdir -p "/mnt/$partName"
+
+	echo >&2 "Mounting $device to /mnt/$partName"
+	mount "$device" "/mnt/$partName" > /dev/null || return
+
+	umount -f -l /var/lib/containers > /dev/null 2>&1 || :
+
+	rm -rf /var/lib/containers /var/lib/boot2podman
+	mkdir -p \
+		"/mnt/$partName/var/lib/boot2podman" \
+		"/mnt/$partName/var/lib/containers" \
+		/var/lib
+	ln -sf "/mnt/$partName/var/lib/boot2podman" /var/lib/boot2podman
+	ln -sf "/mnt/$partName/var/lib/containers" /var/lib/containers
+
+	if [ -e /userdata.tar ]; then
+		mv /userdata.tar /var/lib/boot2podman/
+	fi
+
+	if [ -e /var/lib/boot2podman/userdata.tar ]; then
+		echo >&2 "Extracting userdata.tar into /home/tc"
+		tar -xf /var/lib/boot2podman/userdata.tar -C /home/tc
+		rm -f "/home/tc/$b2pMagic"
+		chown -R tc:staff /home/tc
+	fi
+
+	echo "$device"
+	return
+}
+start() {
+	local mountDevice
+
+	mountDevice="$(_mount || :)"
+
+	if [ -z "$mountDevice" ]; then
+		echo >&2 "error: unable to find a partition with the appropriate label ($diskLabel), an unpartitioned disk, or a disk containing the magic string ($b2pMagic)"
+		exit 1
+	fi
+}
+
+case "$1" in
+	start) "$1" ;;
+	*) echo "Usage $0 {start}"; exit 1 ;;
+esac
