@@ -29,6 +29,11 @@ done
 cp /usr/local/etc/ssh/sshd_config.orig /usr/local/etc/ssh/sshd_config
 /usr/local/etc/init.d/openssh start
 
+mkdir /root/.ssh
+chmod 700 /root/.ssh
+cp -p /home/tc/.ssh/authorized_keys /root/.ssh/
+chmod 600 /root/.ssh/authorized_keys
+
 if [ -e /var/lib/boot2podman/bootlocal.sh ]; then
 	sh /var/lib/boot2podman/bootlocal.sh &
 fi
