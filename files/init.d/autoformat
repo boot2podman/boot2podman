@@ -11,11 +11,12 @@ b2pMagic='boot2podman, please format-me'
 
 # use blockdev to return the disk with the biggest size
 _blockdev_report() {
-	# always ignore "zram" (compressed RAM)
+	# always ignore "ram" and "zram" (compressed RAM)
 	blockdev --report "$@" \
 		| awk 'NR > 1 && $7 ~ /^\/dev\// { print $6, $7 }' \
 		| sort -nr \
 		| cut -d' ' -f2 \
+		| grep -vE '^/dev/ram[0-9]*$'
 		| grep -vE '^/dev/zram[0-9]*$'
 }
 
