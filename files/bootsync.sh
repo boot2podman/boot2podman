@@ -6,6 +6,11 @@
 
 /etc/init.d/autoformat start
 
+if [ -s /var/lib/boot2podman/etc/hostname ]; then
+	hostname="$(cat /var/lib/boot2podman/etc/hostname)"
+	/usr/bin/sethostname "$hostname"
+fi
+
 su "tc" -c "tce-load -i podman.tcz varlink.tcz resolver.tcz buildah.tcz"
 /sbin/ldconfig 2>/dev/null
 
