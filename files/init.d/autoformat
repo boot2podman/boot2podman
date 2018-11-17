@@ -71,7 +71,7 @@ _find_device() {
 	} | fdisk "$device" > /dev/null
 
 	echo >&2 "Formatting ${device}1 (ext4)"
-	mkfs.ext4 -q -L "$diskLabel" "${device}1" > /dev/null
+	mkfs.ext4 -q -L "$diskLabel" -i 8192 "${device}1" > /dev/null
 
 	echo "${device}1"
 	return
