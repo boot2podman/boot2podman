@@ -29,7 +29,7 @@ for keyType in rsa dsa ecdsa ed25519; do # pre-generate a few SSH host keys to d
 	echo "Generating $keyFile"
 	ssh-keygen -q -t "$keyType" -N '' -f "$keyFile"
 	mkdir -p /var/lib/boot2podman/etc/ssh
-	cp "$keyFile" /var/lib/boot2podman/etc/ssh
+	cp "$keyFile" "$keyFile.pub" /var/lib/boot2podman/etc/ssh
 done
 /usr/local/etc/init.d/openssh start
 
