@@ -16,7 +16,7 @@ _blockdev_report() {
 		| awk 'NR > 1 && $7 ~ /^\/dev\// { print $6, $7 }' \
 		| sort -nr \
 		| cut -d' ' -f2 \
-		| grep -vE '^/dev/ram[0-9]*$'
+		| grep -vE '^/dev/ram[0-9]*$' \
 		| grep -vE '^/dev/zram[0-9]*$'
 }
 
