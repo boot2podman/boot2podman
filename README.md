@@ -10,7 +10,7 @@ Boot2podman is a lightweight Linux distribution made specifically to run
 * Recent Linux Kernel, Podman / Buildah pre-installed and ready-to-use
 * Tools operate on [Open Container Initiative](https://www.opencontainers.org/) (OCI) images and containers.
 * Container persistence via disk automount on `/var/lib/containers`
-* SSH keys persistence via disk automount _(both features coming soon)_
+* SSH keys persistence via disk automount (user keys and host keys)
 
 ## Details
 
@@ -50,8 +50,6 @@ ISO can be found in: https://github.com/boot2podman/boot2podman/releases
 ## Getting started
 
 **Please note that you need to run `podman` and `buildah` using `sudo`!**
-
-Eventually we should support using over `varlink` remotely, as well...
 
 ### VirtualBox
 
