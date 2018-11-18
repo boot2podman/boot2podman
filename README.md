@@ -133,6 +133,8 @@ These packages are used at runtime:
   * cni-plugins.tcz
   * ...
 
+These .tcz files are bundled with the kernel in a initramfs, as per [remastering TC](remastering_tc.md).
+
 ## Configuration
 
 The software does not work after installation, without some mandatory registries and policy config done.
