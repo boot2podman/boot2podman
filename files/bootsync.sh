@@ -20,18 +20,22 @@ su "tc" -c "tce-load -i podman.tcz varlink.tcz resolver.tcz buildah.tcz"
 su "tc" -c "tce-load -i openssh.tcz"
 /sbin/ldconfig 2>/dev/null
 
+if [ -d /var/lib/boot2podman/etc/ssh ]; then
+	cp -p /var/lib/boot2podman/etc/ssh/* /usr/local/etc/ssh
+fi
 for keyType in rsa dsa ecdsa ed25519; do # pre-generate a few SSH host keys to decrease the verbosity of /usr/local/etc/init.d/openssh
 	keyFile="/usr/local/etc/ssh/ssh_host_${keyType}_key"
 	[ ! -f "$keyFile" ] || continue
 	echo "Generating $keyFile"
 	ssh-keygen -q -t "$keyType" -N '' -f "$keyFile"
+	mkdir -p /var/lib/boot2podman/etc/ssh
+	cp "$keyFile" /var/lib/boot2podman/etc/ssh
 done
-cp /usr/local/etc/ssh/sshd_config.orig /usr/local/etc/ssh/sshd_config
 /usr/local/etc/init.d/openssh start
 
 mkdir /root/.ssh
 chmod 700 /root/.ssh
-cp -p /home/tc/.ssh/authorized_keys /root/.ssh/
+cp /home/tc/.ssh/authorized_keys /root/.ssh/
 chmod 600 /root/.ssh/authorized_keys
 
 if [ -e /var/lib/boot2podman/bootlocal.sh ]; then
