@@ -189,6 +189,19 @@ Example config files can be found at these locations:
 Boot2podman uses [Tiny Core Linux](http://tinycorelinux.net), which runs from
 RAM and so does not persist filesystem changes by default.
 
+When you run `podman-machine create box`, the tool auto-creates a disk that
+will be automounted and used to persist your docker data in `/var/lib/containers`
+and `/var/lib/boot2podman`.  This virtual disk will be removed when you run
+`podman-machine delete box`.  It will also persist the SSH keys of the machine.
+Changes outside of these directories will be lost after powering down or
+restarting the VM.
+
+If you are not using the [Podman Machine](https://github.com/boot2podman/machine) management tool, you can create an `ext4`
+formatted partition with the label `boot2podman-data` (`mkfs.ext4 -L
+boot2docker-data /dev/sdX5`) to your VM or host, and Boot2podman will automount
+it on `/mnt/sdX` and then softlink `/mnt/sdX/var/lib/containers` to
+`/var/lib/containers`.
+
 ### Inspiration
 
 Boot2podman is inspired by [Boot2Docker](https://github.com/boot2docker/boot2docker), which is
