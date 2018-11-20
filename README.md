@@ -51,6 +51,8 @@ ISO can be found in: https://github.com/boot2podman/boot2podman/releases
 
 **Please note that you need to run `podman` and `buildah` using `sudo`!**
 
+In order to connect to the varlink socket (io.podman), you need `root`.
+
 ### VirtualBox
 
 For now you need to mount the CD-ROM image (ISO) as IDE, not as SATA.
