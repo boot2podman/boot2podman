@@ -120,3 +120,10 @@ Normally this is done by using the init script:
 ``` console
 $ sudo /usr/local/etc/init.d/varlink start
 ```
+
+Now you can resolve services, to their sockets:
+
+``` console
+$ sudo varlink resolve io.podman
+unix:/run/podman/io.podman;mode=0600
+```
