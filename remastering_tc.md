@@ -106,6 +106,6 @@ rm -rf newiso
 ---
 
 Adopted from the Tiny Core Linux wiki:
-> [wiki/custom_kernel.txt](http://wiki.tinycorelinux.net/wiki:dynamic_root_filesystem_remastering) · Last modified: 2013/01/04 13:57 by BobBagwill
+> [wiki/dynamic_root_filesystem_remastering.txt](http://wiki.tinycorelinux.net/wiki:dynamic_root_filesystem_remastering) · Last modified: 2013/01/04 13:57 by BobBagwill
 >
 > Except where otherwise noted, content on this wiki is licensed under the following license: [CC Attribution-Share Alike 3.0 Unported](http://creativecommons.org/licenses/by-sa/3.0/)
