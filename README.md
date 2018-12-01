@@ -77,7 +77,7 @@ The text logo is based on http://ascii.co.uk/art/seal and `figlet -f ascii12 pod
 
 ## Installation
 
-Currently based on [CorePure64-9.0.iso](http://www.tinycorelinux.net/9.x/x86_64/release/CorePure64-9.0.iso), but with a [custom kernel](custom_kernel.md) (4.14.10 -> 4.14.76)
+Currently based on [CorePure64-9.0.iso](http://www.tinycorelinux.net/9.x/x86_64/release/CorePure64-9.0.iso), but with a [custom kernel](custom_kernel.md) (4.14.10 -> 4.14.84)
 
 We need support for `cgroupfs` (including "memory") and for `overlayfs` (on ext4).
 
