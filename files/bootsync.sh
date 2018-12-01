@@ -4,6 +4,9 @@
 # and therefore not slow down the boot process.
 /usr/bin/sethostname box
 
+su "tc" -c "tce-load -i haveged.tcz"
+/sbin/ldconfig 2>/dev/null
+
 /etc/init.d/autoformat start
 
 if [ -s /var/lib/boot2podman/etc/hostname ]; then
@@ -37,9 +40,6 @@ mkdir /root/.ssh
 chmod 700 /root/.ssh
 cp /home/tc/.ssh/authorized_keys /root/.ssh/
 chmod 600 /root/.ssh/authorized_keys
-
-su "tc" -c "tce-load -i haveged.tcz"
-/sbin/ldconfig 2>/dev/null
 
 if [ -e /var/lib/boot2podman/bootlocal.sh ]; then
 	sh /var/lib/boot2podman/bootlocal.sh &
