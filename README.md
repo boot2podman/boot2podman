@@ -200,7 +200,7 @@ restarting the VM.
 
 If you are not using the [Podman Machine](https://github.com/boot2podman/machine) management tool, you can create an `ext4`
 formatted partition with the label `boot2podman-data` (`mkfs.ext4 -L
-boot2docker-data /dev/sdX5`) to your VM or host, and Boot2podman will automount
+boot2podman-data /dev/sdX5`) to your VM or host, and Boot2podman will automount
 it on `/mnt/sdX` and then softlink `/mnt/sdX/var/lib/containers` to
 `/var/lib/containers`.
 
