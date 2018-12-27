@@ -21,15 +21,16 @@ Compile time:
 
 ``` sh
 tce-load -wi compiletc
+tce-load -wi openssl
 tce-load -wi bash
 tce-load -wi squashfs-tools
 ```
 
 ## Bootstrap
 
-https://dl.google.com/go/go1.4-bootstrap-20171003.tar.gz
-
 ``` sh
+wget https://dl.google.com/go/go1.4-bootstrap-20171003.tar.gz
+
 tar xzf go1.4-bootstrap-20171003.tar.gz
 cd go/src
 export GOROOT_FINAL=/usr/local/go-bootstrap
@@ -52,9 +53,10 @@ go version go1.4-bootstrap-20170531 linux/amd64
 
 ## Final
 
-https://dl.google.com/go/go1.10.4.src.tar.gz
-
 ``` sh
+wget https://dl.google.com/go/go1.10.4.src.tar.gz
+wget https://raw.githubusercontent.com/boot2podman/boot2podman/master/go-1.10.4-ca-certificates.patch
+
 tar xzf go1.10.4.src.tar.gz
 cd go/src
 patch -Np2 -i ../../go-1.10.4-ca-certificates.patch
