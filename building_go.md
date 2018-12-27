@@ -28,6 +28,8 @@ tce-load -wi squashfs-tools
 
 ## Bootstrap
 
+Build and package:
+
 ``` sh
 wget https://dl.google.com/go/go1.4-bootstrap-20171003.tar.gz
 
@@ -43,7 +45,7 @@ mksquashfs /tmp/go-bootstrap go-bootstrap.tcz
 
 Load and configure:
 
-``` sh
+``` console
 $ tce-load -i go-bootstrap.tcz
 $ export GOROOT=/usr/local/go-bootstrap
 $ export PATH=$GOROOT/bin:$PATH
@@ -52,6 +54,8 @@ go version go1.4-bootstrap-20170531 linux/amd64
 ```
 
 ## Final
+
+Build and package:
 
 ``` sh
 wget https://dl.google.com/go/go1.10.4.src.tar.gz
