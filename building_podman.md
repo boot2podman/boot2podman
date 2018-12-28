@@ -59,7 +59,7 @@ $ tce-load -wi bash
 
 $ go get github.com/containernetworking/plugins
 $ cd $GOPATH/src/github.com/containernetworking/plugins
-$ ./build.sh
+$ bash build_linux.sh
 $ sudo mkdir -p /usr/local/lib/cni
 $ sudo cp bin/* /usr/local/lib/cni
 ```
