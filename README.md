@@ -99,6 +99,12 @@ The `varlink` command line tool can be installed by [building from source code](
 
 We can also add `buildah` and its dependencies, by [building from source code](building_buildah.md).
 
+## Containers
+
+It is also possible to run the build commands (detailed above) using [containers](containers.md).
+
+Note that you need to use `tce-load -wic`, if not running privileged (`mount`).
+
 ## Packages
 
 Here are the binary packages that are produced, after building from source code.
