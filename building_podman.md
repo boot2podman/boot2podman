@@ -101,5 +101,11 @@ $ git clone https://github.com/tianon/cgroupfs-mount
 $ cd cgroupfs-mount
 
 $ sudo ./cgroupfs-mount
-# needs to go in bootsync.sh
+# needs to be done at boot
+```
+
+Normally this is done by the bundled init script:
+
+``` console
+# /etc/init.d/services/cgroupfs-mount start
 ```
