@@ -69,6 +69,18 @@ ENTRYPOINT ["/usr/local/sbin/tini", "--"]
 
 ## Tiny Core Linux
 
+Building from source:
+
+``` console
+$ tce-load -wi cmake ninja
+
+$ git clone https://github.com/krallin/tini
+$ cd tini
+$ mkdir build && cd build
+$ cmake -G Ninja .. && ninja
+$ sudo install -D -m 755 tini /usr/local/sbin/tini
+```
+
 Package:
 https://dl.bintray.com/boot2podman/tinycorelinux/9.x/x86_64/tcz/tini.tcz
 
