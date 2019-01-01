@@ -40,6 +40,13 @@ Linux containers. It runs completely from RAM, is a
 > from the image. The container can be mounted and modified and then an image
 > can be saved based on the updated container.
 
+### Skopeo
+
+> Skopeo is a command line tool that performs a variety of operations on
+> container images and image repositories. Skopeo allows you to inspect
+> an image showing its layers without requiring that the image be pulled.
+> Skopeo also allows you to copy and delete an image from a repository.
+
 For more details on the project relationship, see the
 [Container Tools Guide](https://github.com/containers/buildah/tree/master/docs/containertools).
 
@@ -97,7 +104,7 @@ Then we install `podman` and other dependencies by [building from source code](b
 
 The `varlink` command line tool can be installed by [building from source code](building_varlink.md).
 
-We can also add `buildah` and its dependencies, by [building from source code](building_buildah.md).
+We can also add `buildah` and `skopeo` tools, by [building from source code](building_buildah.md).
 
 ## Containers
 
@@ -161,8 +168,24 @@ registries = []
         {
             "type": "insecureAcceptAnything"
         }
-    ]
+    ],
+    "transports":
+        {
+            "docker-daemon":
+                {
+                    "": [{"type":"insecureAcceptAnything"}]
+                }
+        }
 }
+```
+
+[/etc/containers/registries.d/default.yaml](files/containers/registries.d/default.yaml)
+
+``` yaml
+# This is the default signature write location for docker registries.
+default-docker:
+  # sigstore: file:///var/lib/atomic/sigstore
+  sigstore-staging: file:///var/lib/atomic/sigstore
 ```
 
 We need to make sure to use "cgroupfs" (not systemd) and to disable "pivot_root" (to run under tmpfs).
