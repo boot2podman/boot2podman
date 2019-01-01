@@ -16,7 +16,7 @@ rootfs64.tar.gz: squashfs-tools.tar.gz
 	$(DOCKER) build -t $(TMP_IMAGE_NAME) src
 	$(DOCKER) run -d --name $(TMP_CONTAINER_NAME) $(TMP_IMAGE_NAME) sleep 180
 	$(DOCKER) start $(TMP_CONTAINER_NAME)
-	$(DOCKER) exec -i $(TMP_CONTAINER_NAME) /bin/sh -c 'cat /tmp/rootfs64.tar.gz' > rootfs64.tar.gz
+	$(DOCKER) exec $(TMP_CONTAINER_NAME) /bin/cat /tmp/rootfs64.tar.gz > rootfs64.tar.gz
 	$(DOCKER) kill $(TMP_CONTAINER_NAME)
 	$(DOCKER) rm $(TMP_CONTAINER_NAME)
 	$(DOCKER) rmi $(TMP_IMAGE_NAME)
