@@ -1,5 +1,4 @@
-
-# tiny init
+# tinycore-tini
 
 Tini - A tiny but valid init for containers
 

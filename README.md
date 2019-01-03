@@ -108,7 +108,7 @@ We can also add `buildah` and `skopeo` tools, by [building from source code](bui
 
 ## Containers
 
-It is also possible to run the build commands (detailed above) using [containers](containers.md).
+It is also possible to run the build commands (detailed above) using [containers](containers/containers.md).
 
 Note that you need to use `tce-load -wic`, if not running privileged (`mount`).
 
