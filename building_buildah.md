@@ -69,7 +69,7 @@ $ tce-load -wi lvm2-dev gpgme-dev
 
 $ go get -d github.com/containers/skopeo
 $ cd $GOPATH/src/github.com/containers/skopeo
-$ make binary-local
+$ make binary-local LOCAL_BUILD_TAGS="btrfs_noversion exclude_graphdriver_btrfs containers_image_ostree_stub" # skopeo
 $ sudo install -D -m 755 skopeo /usr/local/bin/skopeo
 ```
 
