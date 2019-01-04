@@ -104,6 +104,8 @@ Then we install `podman` and other dependencies by [building from source code](b
 
 The `varlink` command line tool can be installed by [building from source code](building_varlink.md).
 
+Support for running containers as a non-root user by [building from source code](building_rootless.md).
+
 We can also add `buildah` and `skopeo` tools, by [building from source code](building_buildah.md).
 
 ## Containers
