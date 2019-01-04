@@ -106,7 +106,9 @@ The `varlink` command line tool can be installed by [building from source code](
 
 Support for running containers as a non-root user by [building from source code](building_rootless.md).
 
-We can also add `buildah` and `skopeo` tools, by [building from source code](building_buildah.md).
+We can also add `buildah` and its dependencies, by [building from source code](building_buildah.md).
+
+Optionally also `skopeo` for remote operations, by [building from source code](building_skopeo.md).
 
 ## Containers
 

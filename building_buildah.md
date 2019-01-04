@@ -2,6 +2,19 @@
 
 Adopted from: [install buildah](https://github.com/containers/buildah/blob/master/install.md).
 
+## Description
+
+`buildah` is a command line tool that can be used to
+
+* create a working container, either from scratch or using an image as a starting point
+* create an image, either from a working container or via the instructions in a Dockerfile
+* images can be built in either the OCI image format or the traditional upstream docker image format
+* mount a working container's root filesystem for manipulation
+* unmount a working container's root filesystem
+* use the updated contents of a container's root filesystem as a filesystem layer to create a new image
+* delete a working container or an image
+* rename a local container
+
 ## Prerequisites
 
 First, install and set up [podman](building_podman.md).
@@ -52,33 +65,4 @@ In order to work on tmpfs, buildah needs to use `no_pivot_root`:
 
 ``` sh
 export BUILDAH_NOPIVOT=true
-```
-
-## Skopeo
-
-`skopeo` is a command line utility that performs various operations on container images and image repositories.
-
-* Copying an image from and to various storage mechanisms.
-  For example you can copy images from one registry to another, without requiring privilege.
-* Inspecting a remote image showing its properties including its layers, without requiring you to pull the image to the host.
-* Deleting an image from an image repository.
-* When required by the repository, skopeo can pass the appropriate credentials and certificates for authentication.
-
-``` console
-$ tce-load -wi lvm2-dev gpgme-dev
-
-$ go get -d github.com/containers/skopeo
-$ cd $GOPATH/src/github.com/containers/skopeo
-$ make binary-local LOCAL_BUILD_TAGS="btrfs_noversion exclude_graphdriver_btrfs containers_image_ostree_stub" # skopeo
-$ sudo install -D -m 755 skopeo /usr/local/bin/skopeo
-```
-
-Configuration, hardcoded to `/etc/containers`:
-
-``` console
-$ sudo install -d -m 755 /var/lib/atomic/sigstore
-$ sudo install -d -m 755 /etc/containers
-$ sudo install -m 644 default-policy.json /etc/containers/policy.json
-$ sudo install -d -m 755 /etc/containers/registries.d
-$ sudo install -m 644 default.yaml /etc/containers/registries.d/default.yaml
 ```
