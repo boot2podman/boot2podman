@@ -22,7 +22,7 @@ Also need to set up the subordinate ID files:
 
 ``` console
 $ sudo sh -c "tc:100000:65536 > /etc/subuid"
-$ sudo sh -c "staff:100000:65536 > /etc/subgid"
+$ sudo sh -c "tc:100000:65536 > /etc/subgid"
 ```
 
 ## fuse3
