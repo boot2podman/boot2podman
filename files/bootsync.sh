@@ -20,6 +20,11 @@ su "tc" -c "tce-load -i podman.tcz varlink.tcz resolver.tcz buildah.tcz"
 /usr/local/etc/init.d/varlink start
 /usr/local/etc/init.d/podman start
 
+mkdir -p /home/tc/.config/containers
+echo 'cgroup_manager = "cgroupfs"' > /home/tc/.config/containers/libpod.conf
+echo 'no_pivot_root = true' >> /home/tc/.config/containers/libpod.conf
+chown -R tc:staff /home/tc/.config
+
 su "tc" -c "tce-load -i openssh.tcz"
 /sbin/ldconfig 2>/dev/null
 
