@@ -3,7 +3,7 @@
 
 Boot2podman is a lightweight Linux distribution made specifically to run
 Linux containers. It runs completely from RAM, is a
-~75MB download.
+~90MB download.
 
 ## Features
 
