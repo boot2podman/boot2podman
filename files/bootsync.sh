@@ -14,7 +14,7 @@ if [ -s /var/lib/boot2podman/etc/hostname ]; then
 	/usr/bin/sethostname "$hostname"
 fi
 
-su "tc" -c "tce-load -i podman.tcz varlink.tcz resolver.tcz buildah.tcz"
+su "tc" -c "tce-load -i podman.tcz varlink.tcz resolver.tcz buildah.tcz skopeo.tcz"
 /sbin/ldconfig 2>/dev/null
 
 /usr/local/etc/init.d/varlink start
