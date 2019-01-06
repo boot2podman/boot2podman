@@ -78,10 +78,27 @@ $ go get -d github.com/containers/libpod
 $ cd $GOPATH/src/github.com/containers/libpod
 $ sed -e 's|"/etc/cni|"/usr/local/etc/cni|' -i libpod.conf
 $ sed -e 's|"/etc/cni|"/usr/local/etc/cni|' -i libpod/runtime.go
+$ sed -e 's|/usr/libexec/|/usr/local/lib/|' -i libpod.conf
+$ sed -e 's|/usr/libexec/|/usr/local/lib/|' -i libpod/runtime.go
 $ sed -e 's|/usr/share/|/usr/local/share/|' -i libpod/runtime.go
 $ make podman
+$ eval `grep ^CATATONIT_VERSION hack/install_catatonit.sh`
 $ sudo install -D -m 755 bin/podman /usr/local/bin/podman
 $ sudo install -D -m 644 libpod.conf /usr/local/share/containers/libpod.conf
+$ cd -
+```
+There is supposed to be an "init" binary at `init_path`:
+
+``` console
+$ tce-load -wi autoconf automake
+
+$ git clone https://github.com/openSUSE/catatonit
+$ cd catatonit
+$ git checkout $CATATONIT_VERSION
+$ autoreconf -i
+$ ./configure
+$ make
+$ sudo install -D -m 755 catatonit /usr/local/lib/podman/catatonit
 $ cd -
 ```
 
