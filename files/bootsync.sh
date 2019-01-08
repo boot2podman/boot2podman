@@ -4,8 +4,13 @@
 # and therefore not slow down the boot process.
 /usr/bin/sethostname box
 
-su "tc" -c "tce-load -i haveged.tcz"
+su "tc" -c "tce-load -i haveged.tcz acpid.tcz"
 /sbin/ldconfig 2>/dev/null
+
+mkdir -p /etc/acpi/events
+echo "event=button/power" > /etc/acpi/events/power
+echo "action=/sbin/poweroff" >> /etc/acpi/events/power
+/usr/local/etc/init.d/acpid start
 
 /etc/init.d/autoformat start
 
