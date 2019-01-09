@@ -54,6 +54,8 @@ For more details on the project relationship, see the
 
 ISO can be found in: https://github.com/boot2podman/boot2podman/releases
 
+Note that if you use `podman-machine`, it will download the ISO automatically...
+
 ## Getting started
 
 **Please note that you need to run `podman` and `buildah` using `sudo`!**
