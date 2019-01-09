@@ -59,7 +59,7 @@ Build and package:
 
 ``` sh
 wget https://dl.google.com/go/go1.10.4.src.tar.gz
-wget https://raw.githubusercontent.com/boot2podman/boot2podman/master/go-1.10.4-ca-certificates.patch
+wget https://raw.githubusercontent.com/boot2podman/boot2podman/master/files/go-1.10.4-ca-certificates.patch
 
 tar xzf go1.10.4.src.tar.gz
 cd go/src
