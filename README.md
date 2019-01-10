@@ -72,6 +72,8 @@ If you want to save the `tc` home directory, use the `home=sda1` bootcode.
 
 For now you need to mount the CD-ROM image (ISO) as IDE, not as SATA.
 
+There is currently no support for the VirtualBox Guest Additions (vboxsf).
+
 ### QEMU/KVM
 
 The default memory allocation (128 MiB) is too small to load everything:
