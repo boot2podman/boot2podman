@@ -58,9 +58,15 @@ Note that if you use `podman-machine`, it will download the ISO automatically...
 
 ## Getting started
 
-**Please note that you need to run `podman` and `buildah` using `sudo`!**
+**Please note that you should run `podman` and `buildah` using `sudo`!**
 
 In order to connect to the varlink socket (io.podman), you need `root`.
+
+### Rootless
+
+Containers created with the `root` user (sudo) are persisted automatically.
+
+If you want to save the `tc` home directory, use the `home=sda1` bootcode.
 
 ### VirtualBox
 
