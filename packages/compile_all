@@ -1,0 +1,181 @@
+#!/bin/sh -x
+
+cd
+
+go get github.com/cpuguy83/go-md2man
+
+test -d $GOPATH/src/github.com/containers/libpod && \
+( cd $GOPATH/src/github.com/containers/libpod && git reset --hard HEAD )
+
+test -d $GOPATH/src/github.com/containers/buildah && \
+( cd $GOPATH/src/github.com/containers/buildah && git reset --hard HEAD )
+
+# runc
+
+tce-load -wic libseccomp-dev bash
+
+go get -d -u github.com/opencontainers/runc
+cd $GOPATH/src/github.com/opencontainers/runc
+make runc
+sudo install -D -m0755 runc /usr/local/sbin/runc
+cd -
+
+# conmon
+
+tce-load -wic libseccomp-dev glib2-dev
+
+go get -d -u github.com/kubernetes-sigs/cri-o
+cd $GOPATH/src/github.com/kubernetes-sigs/cri-o
+make bin/conmon
+sudo install -D -m 755 bin/conmon /usr/local/lib/podman/conmon
+cd -
+
+# cni-plugins
+
+tce-load -wic bash
+
+go get -d -u github.com/containernetworking/plugins
+cd $GOPATH/src/github.com/containernetworking/plugins
+bash build_linux.sh
+sudo mkdir -p /usr/local/lib/cni
+sudo cp bin/* /usr/local/lib/cni
+cd -
+
+# podman
+
+tce-load -wic libseccomp-dev glib2-dev gpgme-dev bash
+
+go get -d -u github.com/containers/libpod
+cd $GOPATH/src/github.com/containers/libpod
+sed -e 's|"/etc/cni|"/usr/local/etc/cni|' -i libpod.conf
+sed -e 's|"/etc/cni|"/usr/local/etc/cni|' -i libpod/runtime.go
+sed -e 's|/usr/libexec/|/usr/local/lib/|' -i libpod.conf
+sed -e 's|/usr/libexec/|/usr/local/lib/|' -i libpod/runtime.go
+sed -e 's|/usr/share/|/usr/local/share/|' -i libpod/runtime.go
+make podman
+eval `grep ^CATATONIT_VERSION hack/install_catatonit.sh`
+sudo install -D -m 755 bin/podman /usr/local/bin/podman
+sudo install -D -m 644 libpod.conf /usr/local/share/containers/libpod.conf
+cd -
+
+# catatonit
+
+tce-load -wic autoconf automake libtool-dev
+
+git clone https://github.com/openSUSE/catatonit
+cd catatonit
+git pull
+git checkout $CATATONIT_VERSION
+autoreconf -i
+./configure
+make
+sudo install -D -m 755 catatonit /usr/local/lib/podman/catatonit
+cd -
+
+# varlink
+
+tce-load -wic git meson
+
+git clone https://github.com/varlink/libvarlink
+cd libvarlink
+git pull
+sed -e 's|/usr/bin/python3|/usr/bin/env python3|' -i varlink-wrapper.py
+meson build --prefix=/usr/local && ninja -C build
+sudo install -D -m 755 build/tool/varlink /usr/local/bin/varlink
+sudo install -D -m 755 build/lib/libvarlink.so.* /usr/local/lib/
+sudo install -D -m 644 lib/varlink.h /usr/local/include/
+sudo install -D -m 755 build/lib/libvarlink.so /usr/local/lib/
+sudo install -D -m 644 build/lib/libvarlink.pc /usr/local/lib/pkgconfig/
+cd -
+
+# resolver
+
+tce-load -wic git meson
+
+git clone https://github.com/varlink/org.varlink.resolver
+cd org.varlink.resolver
+git pull
+$ sed -e 's|/usr/bin/python3|/usr/bin/env python3|' -i varlink-wrapper.py
+make
+sudo install -D -m 755 build/src/*resolver /usr/local/sbin/resolver
+
+# shadow-utils
+
+tce-load -wic autoconf automake libtool-dev gettext-dev libxml2-dev libxslt-dev
+
+git clone https://github.com/shadow-maint/shadow
+cd shadow
+git pull
+./autogen.sh --without-selinux
+./configure --enable-subordinate-ids
+make -C lib && make -C libmisc
+make -C src newuidmap newgidmap
+sudo install -m 4755 src/newuidmap /usr/bin/
+sudo install -m 4755 src/newgidmap /usr/bin/
+cd -
+
+# fuse3
+
+tce-load -wic meson ninja
+tce-load -wic udev-lib-dev
+
+git clone https://github.com/libfuse/libfuse
+cd libfuse
+git pull
+meson build --prefix=/usr/local && ninja -C build
+sudo install -m 755 build/util/fusermount3 /usr/local/bin/
+sudo install -m 755 build/util/mount.fuse3 /usr/local/sbin/
+sudo install -m 644 include/*.h /usr/local/include/
+sudo install -m 644 build/*/fuse3.pc /usr/local/lib/pkgconfig/
+sudo cp -P build/lib/*.so /usr/local/lib/
+sudo cp -P build/lib/*.so.? /usr/local/lib/
+sudo install -m 755 build/lib/*.so.*.* /usr/local/lib/
+cd -
+
+# fuse-overlayfs
+
+tce-load -wic autoconf automake
+
+git clone https://github.com/containers/fuse-overlayfs
+cd fuse-overlayfs
+git pull
+./autogen.sh
+./configure
+make
+sudo install -m 755 fuse-overlayfs /usr/local/bin/
+cd -
+
+# slirp4netns
+
+tce-load -wi autoconf automake
+
+git clone https://github.com/rootless-containers/slirp4netns
+cd slirp4netns
+git pull
+./autogen.sh
+./configure
+make
+sudo install -m 755 slirp4netns /usr/local/bin/
+cd -
+
+# buildah
+
+tce-load -wic libseccomp-dev lvm2-dev glib2-dev gpgme-dev
+
+go get -d -u github.com/containers/buildah
+cd $GOPATH/src/github.com/containers/buildah
+sed -e 's|"/etc/cni|"/usr/local/etc/cni|' -i util/types.go
+sed -e 's|/usr/libexec/cni:/opt/cni/bin|/usr/local/lib/cni|' -i util/types.go
+make buildah
+sudo install -D -m0755 buildah /usr/local/bin/buildah
+cd -
+
+# skopeo
+
+tce-load -wic lvm2-dev gpgme-dev
+
+go get -d -u github.com/containers/skopeo
+cd $GOPATH/src/github.com/containers/skopeo
+make binary-local # skopeo
+sudo install -D -m 755 skopeo /usr/local/bin/skopeo
+cd -

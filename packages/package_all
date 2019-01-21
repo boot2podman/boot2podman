@@ -1,0 +1,82 @@
+#!/bin/sh
+
+cd
+
+make_tcz() {
+    name=$1
+    shift
+
+    sudo rm -rf /tmp/$name
+    sudo mkdir /tmp/$name
+    for f in $@; do
+        d=`dirname $f`
+        sudo mkdir -p /tmp/$name/$d
+        sudo cp -P $f /tmp/$name/$f
+        sudo strip -g /tmp/$name/$f
+    done
+
+    rm -f $name.tcz
+    mksquashfs  /tmp/$name $name.tcz
+    md5sum $name.tcz > $name.tcz.md5.txt
+
+    du -hs $name.tcz
+    unsquashfs -ll $name.tcz
+}
+
+# runc
+
+make_tcz runc /usr/local/sbin/runc
+
+# conmon
+
+make_tcz conmon /usr/local/lib/podman/conmon
+
+# cni-plugins
+
+make_tcz cni-plugins /usr/local/lib/cni/*
+
+# podman
+
+make_tcz podman /usr/local/bin/podman /usr/local/share/containers/libpod.conf
+
+# catatonit
+
+make_tcz catatonit /usr/local/lib/podman/catatonit
+
+# varlink
+
+make_tcz varlink /usr/local/bin/varlink
+
+make_tcz libvarlink /usr/local/lib/libvarlink.so.*
+make_tcz libvarlink-dev /usr/local/include/varlink.h /usr/local/lib/libvarlink.so /usr/local/lib/pkgconfig/libvarlink.pc
+
+# resolver
+
+make_tcz resolver /usr/local/sbin/resolver
+
+# shadow-utils
+
+# included in initfs
+
+# fuse3
+
+make_tcz fuse3 /usr/local/bin/fusermount3 /usr/local/sbin/mount.fuse3
+
+make_tcz libfuse3 /usr/local/lib/libvarlink.so.*
+make_tcz libvarlink-dev /usr/local/include/fuse3.h /usr/local/lib/libfuse3.so /usr/local/lib/pkgconfig/fuse3.pc
+
+# fuse-overlayfs
+
+make_tcz fuse-overlayfs /usr/local/bin/fuse-overlayfs
+
+# slirp4netns
+
+make_tcz slirp4netns /usr/local/bin/slirp4netns
+
+# buildah
+
+make_tcz buildah /usr/local/bin/buildah
+
+# skopeo
+
+make_tcz skopeo /usr/local/bin/skopeo
