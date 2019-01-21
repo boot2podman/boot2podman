@@ -1,0 +1,35 @@
+cd
+
+test -r kernel_config || exit 1
+test -d kernel_patches || exit 1
+
+test -r linux-*.tar.xz || exit 1
+
+tce-load -wic coreutils bc perl5
+
+test -d linux-*/ || \
+tar xf linux-*.tar.xz
+cd linux-*
+for patchfile in ../kernel_patches/*.patch; do
+  patch -p1 < $patchfile
+done
+#make mrproper
+make defconfig
+cat < .config > ../kernel_defconfig
+cp ../kernel_config .config
+make olddefconfig
+make -j `nproc` bzImage
+make -j `nproc` modules
+
+path=/tmp/kernel
+rm -rf /tmp/kernel
+
+cp arch/x86/boot/bzImage ../vmlinuz64
+make INSTALL_MOD_PATH=$path modules_install
+mkdir -p ../modules
+cp -pR $path/lib/modules/* ../modules/
+
+cd -
+
+find modules -name '*.ko' | xargs -n 1 gzip -9
+sed -e 's/.ko/.ko.gz/g' -i modules/*/modules.dep
