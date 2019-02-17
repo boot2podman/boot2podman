@@ -1,3 +1,5 @@
+#!/bin/sh -x
+
 cd
 
 test -r kernel_config || exit 1
@@ -20,16 +22,3 @@ cp ../kernel_config .config
 make olddefconfig
 make -j `nproc` bzImage
 make -j `nproc` modules
-
-path=/tmp/kernel
-rm -rf /tmp/kernel
-
-cp arch/x86/boot/bzImage ../vmlinuz64
-make INSTALL_MOD_PATH=$path modules_install
-mkdir -p ../modules
-cp -pR $path/lib/modules/* ../modules/
-
-cd -
-
-find modules -name '*.ko' | xargs -n 1 gzip -9
-sed -e 's/.ko/.ko.gz/g' -i modules/*/modules.dep

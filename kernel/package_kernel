@@ -1,0 +1,22 @@
+#!/bin/sh
+
+cd
+
+test -d linux-* || exit 1
+
+tce-load -wic coreutils bc perl5
+
+path=/tmp/kernel
+rm -rf /tmp/kernel
+
+cd linux-*
+
+cp arch/x86/boot/bzImage ../vmlinuz64
+make INSTALL_MOD_PATH=$path modules_install
+mkdir -p ../modules
+cp -pR $path/lib/modules/* ../modules/
+
+cd -
+
+find modules -name '*.ko' | xargs -n 1 gzip -9
+sed -e 's/.ko/.ko.gz/g' -i modules/*/modules.dep
