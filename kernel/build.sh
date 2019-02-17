@@ -23,3 +23,8 @@ sudo podman exec boot2podman-kernel test -e /home/tc/linux-$kernel_version.tar.x
 
 sudo podman exec boot2podman-kernel sh -x < compile_kernel
 sudo podman exec boot2podman-kernel sh -x < package_kernel
+
+mnt=$(sudo podman mount boot2podman-kernel)
+sudo sh -c "cp -p ${mnt}/home/tc/vmlinuz64 ."
+sudo sh -c "cp -pR ${mnt}/home/tc/modules ."
+sudo podman umount boot2podman-kernel
