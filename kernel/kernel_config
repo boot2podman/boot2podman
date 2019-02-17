@@ -1,6 +1,6 @@
 #
 # Automatically generated file; DO NOT EDIT.
-# Linux/x86 4.14.93 Kernel Configuration
+# Linux/x86 4.14.101 Kernel Configuration
 #
 CONFIG_64BIT=y
 CONFIG_X86_64=y
@@ -5862,6 +5862,7 @@ CONFIG_RPCSEC_GSS_KRB5=m
 CONFIG_CIFS=m
 CONFIG_CIFS_STATS=y
 # CONFIG_CIFS_STATS2 is not set
+CONFIG_CIFS_ALLOW_INSECURE_LEGACY=y
 CONFIG_CIFS_WEAK_PW_HASH=y
 CONFIG_CIFS_UPCALL=y
 # CONFIG_CIFS_XATTR is not set

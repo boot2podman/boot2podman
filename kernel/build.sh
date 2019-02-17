@@ -1,5 +1,5 @@
 #!/bin/sh
-kernel_version=4.14.93
+kernel_version=4.14.101
 
 kernel_volumes="--volume $PWD/kernel_config:/home/tc/kernel_config \
                 --volume $PWD/kernel_defconfig:/home/tc/kernel_defconfig \
