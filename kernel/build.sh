@@ -21,6 +21,9 @@ test -r linux-$kernel_version.tar.xz \
 sudo podman exec boot2podman-kernel test -e /home/tc/linux-$kernel_version.tar.xz \
 	|| podman_cp boot2podman-kernel linux-$kernel_version.tar.xz /home/tc/linux-$kernel_version.tar.xz
 
+chmod 666 kernel_config
+chmod 666 kernel_defconfig
+
 sudo podman exec boot2podman-kernel sh -x < compile_kernel
 sudo podman exec boot2podman-kernel sh -x < package_kernel
 
