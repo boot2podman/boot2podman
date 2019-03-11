@@ -9,13 +9,13 @@ index aa1785e..755af89 100644
 +	"/usr/local/etc/ssl/certs/ca-certificates.crt",      // TinyCore
  }
 diff --git a/src/crypto/x509/root_unix.go b/src/crypto/x509/root_unix.go
-index 65b5a5f..762835e 100644
+index 48de50b..c28afcb 100644
 --- a/src/crypto/x509/root_unix.go
 +++ b/src/crypto/x509/root_unix.go
-@@ -19,6 +19,7 @@ var certDirectories = []string{
- 	"/usr/local/share/certs",       // FreeBSD
+@@ -20,6 +20,7 @@ var certDirectories = []string{
  	"/etc/pki/tls/certs",           // Fedora/RHEL
  	"/etc/openssl/certs",           // NetBSD
+ 	"/var/ssl/certs",               // AIX
 +	"/usr/local/share/ca-certificates",
  }
  

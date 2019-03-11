@@ -1,7 +1,7 @@
 DOCKER = sudo podman
 
 IMAGE_NAME := tinycore-go
-IMAGE_TAG := 1.10.4
+IMAGE_TAG := 1.12
 
 .PHONY: all clean build
 

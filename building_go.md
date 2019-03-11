@@ -58,18 +58,26 @@ go version go1.4-bootstrap-20170531 linux/amd64
 Build and package:
 
 ``` sh
-wget https://dl.google.com/go/go1.10.4.src.tar.gz
-wget https://raw.githubusercontent.com/boot2podman/boot2podman/master/files/go-1.10.4-ca-certificates.patch
+wget https://dl.google.com/go/go1.12.src.tar.gz
+wget https://raw.githubusercontent.com/boot2podman/boot2podman/master/files/go-1.12-ca-certificates.patch
 
-tar xzf go1.10.4.src.tar.gz
+tar xzf go1.12.src.tar.gz
 cd go/src
-patch -Np2 -i ../../go-1.10.4-ca-certificates.patch
+patch -Np2 -i ../../go-1.12-ca-certificates.patch
 export GOROOT_FINAL=/usr/local/go
 ./make.bash
 cd -
+rm -rf go/VERSION.cache
 rm -rf go/pkg/bootstrap
+rm -rf go/src/runtime/race/race_darwin_amd64.syso
+rm -rf go/src/runtime/race/race_freebsd_amd64.syso
+rm -rf go/src/runtime/race/race_netbsd_amd64.syso
+rm -rf go/src/runtime/race/race_windows_amd64.syso
 rm -rf go/pkg/tool/linux_amd64/api
 rm -rf go/pkg/linux_amd64/cmd
+rm -rf go/pkg/linux_amd64/_dynlink
+rm -rf go/pkg/linux_amd64/_shared
+rm -rf go/pkg/linux_amd64/_testcshared_shared
 rm -rf go/pkg/obj
 mkdir -p /tmp/go/usr/local
 mv go /tmp/go/usr/local/go
@@ -83,7 +91,7 @@ $ tce-load -i go.tcz
 $ export GOROOT=/usr/local/go
 $ export PATH=$GOROOT/bin:$PATH
 $ go version
-go version go1.10.4 linux/amd64
+go version go1.12 linux/amd64
 ```
 
 ## Pre-requisites
@@ -125,16 +133,6 @@ go get golang.org/x/tools/cmd/godoc
 ```
 
 Available online, as: https://godoc.org/-/go
-
-## Install tour
-
-Install the go tour, if wanted. It was still included, in 1.10.
-
-``` sh
-go get golang.org/x/tour
-```
-
-Available online, as: https://tour.golang.org/
 
 ## Hello World
 
