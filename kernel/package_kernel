@@ -4,7 +4,7 @@ cd
 
 test -d linux-* || exit 1
 
-tce-load -wic coreutils bc perl5
+tce-load -wic coreutils bc perl5 elfutils-dev
 
 path=/tmp/kernel
 rm -rf /tmp/kernel
