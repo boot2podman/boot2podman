@@ -98,8 +98,12 @@ Currently based on [CorePure64-9.0.iso](http://www.tinycorelinux.net/9.x/x86_64/
 
 We need support for `cgroupfs` (including "memory") and for `overlayfs` (on ext4).
 
+Also need memory cgroup swap enabled, otherwise memory limits won't work properly.
+
 ``` txt
 CONFIG_MEMCG=y
+CONFIG_MEMCG_SWAP=y
+CONFIG_MEMCG_SWAP_ENABLED=y
 CONFIG_OVERLAY_FS=y
 ```
 
