@@ -3,13 +3,13 @@ Tiny Core Linux x86\_64 Container Image Builder
 
 Dockerfile and helper scripts for building a very small CLI system image based
 on Tiny Core Linux developed at [The Core Project](http://tinycorelinux.net).
-It builds Core 9.0 x86\_64 image by using following packages which were
+It builds Core 10.0 x86\_64 image by using following packages which were
 converted those archive type from The Core Project packages.
 
 - rootfs64.tar.gz: contains base system binaries and a file system layout
 - squashfs-tools.tar.gz: contains a squashfs builder and expander
 
-Those original packages are found under http://tinycorelinux.net/9.x/x86_64
+Those original packages are found under http://tinycorelinux.net/10.x/x86_64
 
 ## How to build the image
 

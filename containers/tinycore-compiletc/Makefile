@@ -1,7 +1,7 @@
 DOCKER = sudo podman
 
 IMAGE_NAME := tinycore-compiletc
-IMAGE_TAG := 9.0-x86_64
+IMAGE_TAG := 10.0-x86_64
 
 .PHONY: all clean build
 

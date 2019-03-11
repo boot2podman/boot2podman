@@ -6,7 +6,7 @@ kernel_volumes="--volume $PWD/kernel_config:/home/tc/kernel_config \
                 --volume $PWD/kernel_patches:/home/tc/kernel_patches"
 
 sudo podman container exists boot2podman-kernel \
-	|| sudo podman run -d --name=boot2podman-kernel $kernel_volumes boot2podman-docker-tinycore.bintray.io/tinycore-compiletc:9.0-x86_64 sleep 3600
+	|| sudo podman run -d --name=boot2podman-kernel $kernel_volumes boot2podman-docker-tinycore.bintray.io/tinycore-compiletc:10.0-x86_64 sleep 3600
 $(sudo podman inspect --format '{{.State.Running}}' boot2podman-kernel) \
 	|| sudo podman start boot2podman-kernel
 
