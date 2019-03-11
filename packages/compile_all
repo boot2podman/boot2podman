@@ -95,7 +95,7 @@ tce-load -wic git meson
 git clone https://github.com/varlink/org.varlink.resolver
 cd org.varlink.resolver
 git pull
-$ sed -e 's|/usr/bin/python3|/usr/bin/env python3|' -i varlink-wrapper.py
+sed -e 's|/usr/bin/python3|/usr/bin/env python3|' -i varlink-wrapper.py
 make
 sudo install -D -m 755 build/src/*resolver /usr/local/sbin/resolver
 cd -
