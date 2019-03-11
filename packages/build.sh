@@ -11,4 +11,5 @@ sudo podman exec boot2podman-build sh -x < package_all
 
 mnt=$(sudo podman mount boot2podman-build)
 sudo sh -c "cp -p ${mnt}/home/tc/*.tcz* ."
+sudo sh -c "cp -p ${mnt}/home/tc/*.tgz* ."
 sudo podman umount boot2podman-build
