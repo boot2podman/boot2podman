@@ -111,6 +111,12 @@ _mount() {
 		chown -R tc:staff /home/tc
 	fi
 
+	mkdir -p \
+		"/mnt/$partName/local/share/containers" \
+		/home/tc/.local/share
+	chown -R tc:staff "/mnt/$partName/local/share/containers" /home/tc/.local
+	ln -sf "/mnt/$partName/local/share/containers" /home/tc/.local/share/containers
+
 	echo "$device"
 	return
 }

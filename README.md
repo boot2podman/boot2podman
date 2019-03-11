@@ -62,12 +62,6 @@ Note that if you use `podman-machine`, it will download the ISO automatically...
 
 In order to connect to the varlink socket (io.podman), you need `root`.
 
-### Rootless
-
-Containers created with the `root` user (sudo) are persisted automatically.
-
-If you want to save the `tc` home directory, use the `home=sda1` bootcode.
-
 ### VirtualBox
 
 For now you need to mount the CD-ROM image (ISO) as IDE, not as SATA.
