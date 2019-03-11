@@ -1,7 +1,8 @@
-diff -Nur linux-2.6.33/drivers/video/logo/Kconfig b/drivers/video/logo/Kconfig
---- linux-2.6.33/drivers/video/logo/Kconfig	2010-02-24 20:52:17.000000000 +0200
-+++ b/drivers/video/logo/Kconfig	2010-02-26 18:57:23.356109316 +0200
-@@ -27,6 +27,10 @@
+diff --git a/drivers/video/logo/Kconfig b/drivers/video/logo/Kconfig
+index d1f6196..47fad76 100644
+--- a/drivers/video/logo/Kconfig
++++ b/drivers/video/logo/Kconfig
+@@ -27,6 +27,10 @@ config LOGO_LINUX_CLUT224
  	bool "Standard 224-color Linux logo"
  	default y
  
@@ -9,33 +10,41 @@ diff -Nur linux-2.6.33/drivers/video/logo/Kconfig b/drivers/video/logo/Kconfig
 +	bool "Unofficial 33-color TinyCoreLinux logo"
 +	default y
 +
- config LOGO_BLACKFIN_VGA16
- 	bool "16-colour Blackfin Processor Linux logo"
- 	depends on BLACKFIN
-diff -Nur linux-2.6.33/drivers/video/logo/logo.c b/drivers/video/logo/logo.c
---- linux-2.6.33/drivers/video/logo/logo.c	2010-02-24 20:52:17.000000000 +0200
-+++ b/drivers/video/logo/logo.c	2010-02-26 18:57:23.374109693 +0200
-@@ -61,12 +61,16 @@
- 		logo = &logo_superh_vga16;
- #endif
- 	}
--	
-+
- 	if (depth >= 8) {
- #ifdef CONFIG_LOGO_LINUX_CLUT224
+ config LOGO_DEC_CLUT224
+ 	bool "224-color Digital Equipment Corporation Linux logo"
+ 	depends on MACH_DECSTATION || ALPHA
+diff --git a/drivers/video/logo/Makefile b/drivers/video/logo/Makefile
+index 228a89b..6753003 100644
+--- a/drivers/video/logo/Makefile
++++ b/drivers/video/logo/Makefile
+@@ -5,6 +5,7 @@ obj-$(CONFIG_LOGO)			+= logo.o
+ obj-$(CONFIG_LOGO_LINUX_MONO)		+= logo_linux_mono.o
+ obj-$(CONFIG_LOGO_LINUX_VGA16)		+= logo_linux_vga16.o
+ obj-$(CONFIG_LOGO_LINUX_CLUT224)	+= logo_linux_clut224.o
++obj-$(CONFIG_LOGO_TINYCORE_CLUT224)	+= logo_tinycore_clut224.o
+ obj-$(CONFIG_LOGO_DEC_CLUT224)		+= logo_dec_clut224.o
+ obj-$(CONFIG_LOGO_MAC_CLUT224)		+= logo_mac_clut224.o
+ obj-$(CONFIG_LOGO_PARISC_CLUT224)	+= logo_parisc_clut224.o
+diff --git a/drivers/video/logo/logo.c b/drivers/video/logo/logo.c
+index 36aa050..16159d9 100644
+--- a/drivers/video/logo/logo.c
++++ b/drivers/video/logo/logo.c
+@@ -52,6 +52,10 @@ const struct linux_logo * __ref fb_find_logo(int depth)
  		/* Generic Linux logo */
- 		logo = &logo_linux_clut224;
+ 		logo = &logo_linux_mono;
  #endif
 +#ifdef CONFIG_LOGO_TINYCORE_CLUT224
 +		/* Generic Linux logo */
 +		logo = &logo_tinycore_clut224;
 +#endif
- #ifdef CONFIG_LOGO_BLACKFIN_CLUT224
- 		/* Blackfin Linux logo */
- 		logo = &logo_blackfin_clut224;
-diff -Nur linux-2.6.33/drivers/video/logo/logo_tinycore_clut224.ppm b/drivers/video/logo/logo_tinycore_clut224.ppm
---- linux-2.6.33/drivers/video/logo/logo_tinycore_clut224.ppm	1970-01-01 02:00:00.000000000 +0200
-+++ b/drivers/video/logo/logo_tinycore_clut224.ppm	2010-02-26 18:57:23.407112859 +0200
+ #ifdef CONFIG_LOGO_SUPERH_MONO
+ 		/* SuperH Linux logo */
+ 		logo = &logo_superh_mono;
+diff --git a/drivers/video/logo/logo_tinycore_clut224.ppm b/drivers/video/logo/logo_tinycore_clut224.ppm
+new file mode 100644
+index 0000000..b023236
+--- /dev/null
++++ b/drivers/video/logo/logo_tinycore_clut224.ppm
 @@ -0,0 +1,3603 @@
 +P2
 +300 200
@@ -3640,25 +3649,15 @@ diff -Nur linux-2.6.33/drivers/video/logo/logo_tinycore_clut224.ppm b/drivers/vi
 +10 10 10 5 5 5 5 5 5 5 5 5 10 5 5 10 5
 +5 5 5 5 10 10 10 10 10 10 10 10 10 10 5 10 10
 +10 10 10 10 10 5 10 19 10 10 10
-diff -Nur linux-2.6.33/drivers/video/logo/Makefile b/drivers/video/logo/Makefile
---- linux-2.6.33/drivers/video/logo/Makefile	2010-02-24 20:52:17.000000000 +0200
-+++ b/drivers/video/logo/Makefile	2010-02-26 18:57:23.358108820 +0200
-@@ -4,6 +4,7 @@
- obj-$(CONFIG_LOGO_LINUX_MONO)		+= logo_linux_mono.o
- obj-$(CONFIG_LOGO_LINUX_VGA16)		+= logo_linux_vga16.o
- obj-$(CONFIG_LOGO_LINUX_CLUT224)	+= logo_linux_clut224.o
-+obj-$(CONFIG_LOGO_TINYCORE_CLUT224)	+= logo_tinycore_clut224.o
- obj-$(CONFIG_LOGO_BLACKFIN_CLUT224)	+= logo_blackfin_clut224.o
- obj-$(CONFIG_LOGO_BLACKFIN_VGA16)	+= logo_blackfin_vga16.o
- obj-$(CONFIG_LOGO_DEC_CLUT224)		+= logo_dec_clut224.o
-diff -Nur linux-2.6.33/include/linux/linux_logo.h b/include/linux/linux_logo.h
---- linux-2.6.33/include/linux/linux_logo.h	2010-02-24 20:52:17.000000000 +0200
-+++ b/include/linux/linux_logo.h	2010-02-26 19:01:16.574115323 +0200
-@@ -35,6 +35,7 @@
+diff --git a/include/linux/linux_logo.h b/include/linux/linux_logo.h
+index d4d5b93..184a67b 100644
+--- a/include/linux/linux_logo.h
++++ b/include/linux/linux_logo.h
+@@ -36,6 +36,7 @@ struct linux_logo {
  extern const struct linux_logo logo_linux_mono;
  extern const struct linux_logo logo_linux_vga16;
  extern const struct linux_logo logo_linux_clut224;
 +extern const struct linux_logo logo_tinycore_clut224;
- extern const struct linux_logo logo_blackfin_vga16;
- extern const struct linux_logo logo_blackfin_clut224;
  extern const struct linux_logo logo_dec_clut224;
+ extern const struct linux_logo logo_mac_clut224;
+ extern const struct linux_logo logo_parisc_clut224;
