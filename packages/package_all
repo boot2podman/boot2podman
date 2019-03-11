@@ -23,6 +23,26 @@ make_tcz() {
     unsquashfs -ll $name.tcz
 }
 
+make_tgz() {
+    name=$1
+    shift
+
+    sudo rm -rf /tmp/$name
+    sudo mkdir /tmp/$name
+    for f in $@; do
+        d=`dirname $f`
+        sudo mkdir -p /tmp/$name/$d
+        sudo cp -P $f /tmp/$name/$f
+        sudo strip -g /tmp/$name/$f
+    done
+
+    tar -C /tmp/$name -cvzf $name.tgz .
+    md5sum $name.tgz > $name.tgz.md5.txt
+
+    du -hs $name.tgz
+    tar -tf $name.tgz
+}
+
 # runc
 
 make_tcz runc /usr/local/sbin/runc
@@ -56,7 +76,7 @@ make_tcz resolver /usr/local/sbin/resolver
 
 # shadow-utils
 
-# included in initfs
+make_tgz shadow-utils /usr/bin/newuidmap /usr/bin/newgidmap
 
 # fuse3
 
