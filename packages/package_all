@@ -82,8 +82,8 @@ make_tgz shadow-utils /usr/bin/newuidmap /usr/bin/newgidmap
 
 make_tcz fuse3 /usr/local/bin/fusermount3 /usr/local/sbin/mount.fuse3
 
-make_tcz libfuse3 /usr/local/lib/libvarlink.so.*
-make_tcz libvarlink-dev /usr/local/include/fuse3.h /usr/local/lib/libfuse3.so /usr/local/lib/pkgconfig/fuse3.pc
+make_tcz libfuse3 /usr/local/lib/libfuse3.so.*
+make_tcz libfuse3-dev /usr/local/include/fuse3.h /usr/local/lib/libfuse3.so /usr/local/lib/pkgconfig/fuse3.pc
 
 # fuse-overlayfs
 
