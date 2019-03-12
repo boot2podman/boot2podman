@@ -126,6 +126,8 @@ Note that you need to use `tce-load -wic`, if not running privileged (`mount`).
 
 ## Packages
 
+Except for the kernel and some system dependencies, everything uses [packages](packages/packages.md).
+
 Here are the binary packages that are produced, after building from source code.
 
 ### Build
