@@ -25,9 +25,15 @@ KVM acceleration can be used
 $ qemu-system-x86_64 -enable-kvm -cdrom CorePure64-10.0.iso
 ```
 
+The number of processors and memory can be increased (default is 1 CPU and 128 MB):
+
+``` sh
+qemu-system-x86_64 -enable-kvm -smp 4 -m 512 CorePure64-10.0.iso
+```
+
 But when building packages and cross-compiling, it can be useful to run in a container...
 
-## cc
+## Container Images
 
 The [Tiny Core Linux](http://tinycorelinux.net) distribution is also available as a standard OCI container image:
 
@@ -37,12 +43,33 @@ $ sudo podman run -it boot2podman-docker-tinycore.bintray.io/tinycore:10.0-x86_6
 PRETTY_NAME="TinyCoreLinux 10.0"
 ```
 
+For older kernels (< 4.8) you might want to run a variant with a more compatible glibc:
+
+``` console
+$ sudo podman run -it boot2podman-docker-tinycore.bintray.io/tinycore:10.0-x86_64
+FATAL: kernel too old
+$ sudo podman run -it boot2podman-docker-tinycore.bintray.io/tinycore-glibc:10.0-x86_64
+/ $
+```
+
+## cc
+
 A container build image is available, that feature tinycore with `compiletc` package:
 
 ``` console
 $ sudo podman run -it boot2podman-docker-tinycore.bintray.io/tinycore-compiletc:10.0-x86_64
 / $ cc --version
 cc (GCC) 8.2.0
+```
+
+This includes a basic set of packages, such as `gcc` and `make`, and all their dependencies.
+
+Additional development `.tcz` packages can be installed, using the `tce-load` command.
+
+An overview of the available packages is at: <http://www.tinycorelinux.net/10.x/x86_64/tcz/>
+
+``` sh
+tce-load -wic bash.tcz
 ```
 
 ## go
