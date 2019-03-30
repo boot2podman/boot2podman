@@ -90,15 +90,19 @@ _mount() {
 	echo >&2 "Mounting $device to /mnt/$partName"
 	mount "$device" "/mnt/$partName" > /dev/null || return
 
+	umount -f -l /var/lib/rancher > /dev/null 2>&1 || :
 	umount -f -l /var/lib/boot2podman > /dev/null 2>&1 || :
 	umount -f -l /var/lib/containers > /dev/null 2>&1 || :
 
-	rm -rf /var/lib/containers /var/lib/boot2podman
+	rm -rf /var/lib/containers /var/lib/boot2podman /var/lib/rancher
 	mkdir -p \
+		"/mnt/$partName/var/lib/rancher" \
 		"/mnt/$partName/var/lib/boot2podman" \
 		"/mnt/$partName/var/lib/containers" \
+		/var/lib/rancher \
 		/var/lib/boot2podman \
 		/var/lib/containers
+	mount --bind "/mnt/$partName/var/lib/rancher" /var/lib/rancher # k3s
 	mount --bind "/mnt/$partName/var/lib/boot2podman" /var/lib/boot2podman
 	mount --bind "/mnt/$partName/var/lib/containers" /var/lib/containers
 
