@@ -118,6 +118,12 @@ We can also add `buildah` and its dependencies, by [building from source code](b
 
 Optionally also `skopeo` for remote operations, by [building from source code](building_skopeo.md).
 
+## Kubernetes
+
+Podman is run on a single host, Kubernetes is a cluster orchestration system.
+
+We can install `crio`/`crictl` and `k3s`/`kubectl` by [building from source code](building_kubernetes.md).
+
 ## Containers
 
 It is also possible to run the build commands (detailed above) using [containers](containers/containers.md).
