@@ -152,6 +152,20 @@ $ sudo kubectl help
 
 **Note**: podman and crio/crictl share images, but they do not share pods.
 
+## Deployment
+
+The following are deployed by default:
+
+* CoreDNS (`coredns`, 40M images)
+* Traefik (`traefik`, 70M images)
+* Service load balancer (`servicelb`, 90M images)
+
+To cut down on the image sizes, these can be disabled with `--no-deploy`.
+
+Airgapped images (.tar) are put in `/var/lib/rancher/k3s/agent/images/`
+
+They are preloaded automatically for containerd, manually for other runtimes.
+
 ## Remote Access
 
 ### Joining nodes
