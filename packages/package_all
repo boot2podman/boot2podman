@@ -100,3 +100,13 @@ make_tcz buildah /usr/local/bin/buildah
 # skopeo
 
 make_tcz skopeo /usr/local/bin/skopeo
+
+# crio
+
+make_tcz crio /usr/local/bin/crio /usr/local/lib/crio/conmon /usr/local/lib/crio/pause \
+/usr/local/share/crio/crio.conf /usr/local/share/crio/crictl.yaml /usr/local/etc/crio/seccomp.json
+
+# k3s
+
+make_tcz k3s /usr/local/bin/k3s /usr/local/bin/k3s-server /usr/local/bin/k3s-agent \
+/usr/local/bin/kubectl /usr/local/bin/crictl

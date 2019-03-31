@@ -180,3 +180,39 @@ cd $GOPATH/src/github.com/containers/skopeo
 make binary-local # skopeo
 sudo install -D -m 755 skopeo /usr/local/bin/skopeo
 cd -
+
+# crio
+
+tce-load -wic libseccomp-dev glib2-dev
+
+go get -d -u github.com/kubernetes-sigs/cri-o
+cd $GOPATH/src/github.com/kubernetes-sigs/cri-o
+sed -e 's|/usr/bin/runc|/usr/local/sbin/runc|' -i lib/config.go
+sed -e 's|"/etc/cni|"/usr/local/etc/cni|' -i lib/config_unix.go
+sed -e 's|"/opt/cni/bin|"/usr/local/lib/cni|' -i lib/config_unix.go
+sed -e 's|"/etc/crio|"/usr/local/etc/crio|' -i lib/config_unix.go
+make binaries
+sudo install -D -m 755 bin/crio /usr/local/bin/crio
+sudo install -D -m 755 bin/conmon /usr/local/lib/crio/conmon
+sudo install -D -m 755 bin/pause /usr/local/lib/crio/pause
+make crio.conf
+sudo install -D -m 644 crio.conf /usr/local/share/crio/crio.conf
+sudo install -D -m 644 crictl.yaml /usr/local/share/crio/crictl.yaml
+sudo install -D -m 644 seccomp.json /usr/local/etc/crio/seccomp.json
+cd -
+
+# k3s
+
+tce-load -wic libseccomp-dev sqlite3-dev
+
+mkdir -p `dirname $GOPATH/src/github.com/rancher/k3s`
+git clone --depth 1 https://github.com/rancher/k3s $GOPATH/src/github.com/rancher/k3s
+cd $GOPATH/src/github.com/rancher/k3s
+git pull
+go build -tags "libsqlite3 seccomp no_btrfs netgo osusergo" -ldflags "-w -s" -o k3s ./cmd/server/main.go
+sudo install -D -m 755 k3s /usr/local/bin/k3s
+sudo ln -sf k3s /usr/local/bin/k3s-server
+sudo ln -sf k3s /usr/local/bin/k3s-agent
+sudo ln -sf k3s /usr/local/bin/kubectl
+sudo ln -sf k3s /usr/local/bin/crictl
+cd -
