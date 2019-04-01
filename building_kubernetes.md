@@ -197,3 +197,14 @@ Copy `/etc/rancher/k3s/k3s.yaml` on your machine located outside the cluster as
 `kubectl` can now manage your k3s cluster.
 
 See <https://kubernetes.io/docs/tasks/tools/install-kubectl/>
+
+
+### Certificates
+
+By default the server will generate certificates for the primary interface `eth0`:
+
+`Unable to connect to the server: x509: certificate is valid for 127.0.0.1, 10.0.2.15, not 192.168.99.100`
+
+To also include the secondary interface `eth1` to access remotely over the IP:
+
+`--tls-san 192.168.99.100`
