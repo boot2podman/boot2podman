@@ -162,9 +162,19 @@ The following are deployed by default:
 
 To cut down on the image sizes, these can be disabled with `--no-deploy`.
 
+``` sh
+sudo -b k3s server --container-runtime-endpoint /var/run/crio/crio.sock \
+                   --no-deploy traefik --no-deploy servicelb
+```
+
 Airgapped images (.tar) are put in `/var/lib/rancher/k3s/agent/images/`
 
 They are preloaded automatically for containerd, manually for other runtimes.
+
+``` sh
+# when not using the launcher binary, the images are found elsewhere
+find /usr/local/share/k3s/ -type f | xargs -n 1 sudo podman load -i
+```
 
 ## Remote Access
 
