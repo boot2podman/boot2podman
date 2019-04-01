@@ -10,6 +10,9 @@ test -d $GOPATH/src/github.com/containers/libpod && \
 test -d $GOPATH/src/github.com/containers/buildah && \
 ( cd $GOPATH/src/github.com/containers/buildah && git reset --hard HEAD )
 
+test -d $GOPATH/src/github.com/kubernetes-sigs/cri-o && \
+( cd $GOPATH/src/github.com/kubernetes-sigs/cri-o && git reset --hard HEAD )
+
 # runc
 
 tce-load -wic libseccomp-dev bash
@@ -187,6 +190,8 @@ tce-load -wic libseccomp-dev glib2-dev
 
 go get -d -u github.com/kubernetes-sigs/cri-o
 cd $GOPATH/src/github.com/kubernetes-sigs/cri-o
+# Fix for https://github.com/kubernetes-sigs/cri-o/issues/2196
+git fetch origin refs/pull/2195/head && git checkout FETCH_HEAD
 sed -e 's|/usr/bin/runc|/usr/local/sbin/runc|' -i lib/config.go
 sed -e 's|"/etc/cni|"/usr/local/etc/cni|' -i lib/config_unix.go
 sed -e 's|"/opt/cni/bin|"/usr/local/lib/cni|' -i lib/config_unix.go
