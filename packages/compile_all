@@ -190,8 +190,6 @@ tce-load -wic libseccomp-dev glib2-dev
 
 go get -d -u github.com/kubernetes-sigs/cri-o
 cd $GOPATH/src/github.com/kubernetes-sigs/cri-o
-# Fix for https://github.com/kubernetes-sigs/cri-o/issues/2196
-git fetch origin refs/pull/2195/head && git checkout FETCH_HEAD
 sed -e 's|/usr/bin/runc|/usr/local/sbin/runc|' -i lib/config.go
 sed -e 's|"/etc/cni|"/usr/local/etc/cni|' -i lib/config_unix.go
 sed -e 's|"/opt/cni/bin|"/usr/local/lib/cni|' -i lib/config_unix.go
