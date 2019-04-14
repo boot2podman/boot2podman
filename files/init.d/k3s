@@ -1,0 +1,30 @@
+#!/bin/sh
+
+options=
+datadir=/usr/local/share
+
+case "${1}" in
+	start)
+		if ! podman image exists k8s.gcr.io/pause:3.1
+		then
+			find $datadir/k3s/ -type f | xargs -n 1 podman load -i
+		fi
+		if ifconfig eth1 >/dev/null 2>&1; then
+			ip=`ifconfig eth1 | grep "inet addr" |
+			    cut -d ':' -f 2 | cut -d ' ' -f 1`
+			options="$options --tls-san $ip"
+		fi
+		k3s server --container-runtime-endpoint /var/run/crio/crio.sock \
+		           --no-deploy traefik --no-deploy servicelb \
+		           --log /var/log/k3s.log $options &
+		;;
+	stop)
+		pkill ks3s
+		;;
+	status)
+		pidof k3s
+		;;
+	*)
+		exit 1
+		;;
+esac
