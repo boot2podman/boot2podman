@@ -1,7 +1,7 @@
 DOCKER = sudo podman
 
 IMAGE_NAME := tinycore-buildah
-IMAGE_TAG := 1.6
+IMAGE_TAG := 1.8
 
 .PHONY: all clean build
 

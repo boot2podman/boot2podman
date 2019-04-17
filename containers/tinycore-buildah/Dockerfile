@@ -1,13 +1,13 @@
-FROM tinycore:9.0-x86_64
+FROM tinycore:10.0-x86_64
 
 # Note: wget https:// needs "openssl"
 
 RUN tce-load -wic openssl \
     && cd /tmp \
-    && wget https://dl.bintray.com/boot2podman/tinycorelinux/9.x/x86_64/tcz/buildah.tcz \
-    && wget https://dl.bintray.com/boot2podman/tinycorelinux/9.x/x86_64/tcz/buildah.tcz.dep \
-    && wget https://dl.bintray.com/boot2podman/tinycorelinux/9.x/x86_64/tcz/runc.tcz \
-    && wget https://dl.bintray.com/boot2podman/tinycorelinux/9.x/x86_64/tcz/cni-plugins.tcz \
+    && wget https://dl.bintray.com/boot2podman/tinycorelinux/10.x/x86_64/tcz/buildah.tcz \
+    && wget https://dl.bintray.com/boot2podman/tinycorelinux/10.x/x86_64/tcz/buildah.tcz.dep \
+    && wget https://dl.bintray.com/boot2podman/tinycorelinux/10.x/x86_64/tcz/runc.tcz \
+    && wget https://dl.bintray.com/boot2podman/tinycorelinux/10.x/x86_64/tcz/cni-plugins.tcz \
     && tce-load -wic ca-certificates liblvm2 libseccomp glib2 gpgme \
     && tce-load -ic buildah.tcz \
     && rm -f buildah.tcz buildah.tcz.dep runc.tcz cni-plugins.tcz \
