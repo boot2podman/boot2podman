@@ -19,7 +19,7 @@ case "${1}" in
 		           --log /var/log/k3s.log $options &
 		;;
 	stop)
-		pkill ks3s
+		pkill k3s
 		;;
 	status)
 		pidof k3s
