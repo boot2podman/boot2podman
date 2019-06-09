@@ -27,8 +27,8 @@ cd -
 
 tce-load -wic libseccomp-dev glib2-dev
 
-go get -d -u github.com/kubernetes-sigs/cri-o
-cd $GOPATH/src/github.com/kubernetes-sigs/cri-o
+go get -d -u github.com/containers/conmon
+cd $GOPATH/src/github.com/containers/conmon
 make bin/conmon
 sudo install -D -m 755 bin/conmon /usr/local/lib/podman/conmon
 cd -

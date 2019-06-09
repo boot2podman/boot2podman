@@ -45,8 +45,8 @@ The latest version of `conmon` is expected to be installed on the system. Conmon
 ``` console
 $ tce-load -wi libseccomp-dev glib2-dev
 
-$ go get -d github.com/kubernetes-sigs/cri-o
-$ cd $GOPATH/src/github.com/kubernetes-sigs/cri-o
+$ go get -d github.com/containers/conmon
+$ cd $GOPATH/src/github.com/containers/conmon
 $ make bin/conmon
 $ sudo install -D -m 755 bin/conmon /usr/local/lib/podman/conmon
 $ cd -
