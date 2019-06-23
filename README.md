@@ -140,14 +140,14 @@ Here are the binary packages that are produced, after building from source code.
 
 These packages are used for building:
 
-* [compiletc.tcz](http://www.tinycorelinux.net/9.x/x86_64/tcz/compiletc.tcz) 54M*
+* [compiletc.tcz](http://www.tinycorelinux.net/10.x/x86_64/tcz/compiletc.tcz) 54M*
   * gcc.tcz
   * glibc_base-dev.tcz
   * make.tcz
   * pkg-config.tcz
   * ...
-* [git.tcz](http://www.tinycorelinux.net/9.x/x86_64/tcz/git.tcz) 5.7M*
-* [go.tcz](https://dl.bintray.com/boot2podman/tinycorelinux/9.x/x86_64/tcz/go.tcz) 75M*
+* [git.tcz](http://www.tinycorelinux.net/10.x/x86_64/tcz/git.tcz) 5.7M*
+* [go.tcz](https://dl.bintray.com/boot2podman/tinycorelinux/10.x/x86_64/tcz/go.tcz) 75M*
 
 \* total size, including dependencies (see .tree and .dep)
 
@@ -155,13 +155,13 @@ These packages are used for building:
 
 These packages are used at runtime:
 
-* [podman.tcz](https://dl.bintray.com/boot2podman/tinycorelinux/9.x/x86_64/tcz/podman.tcz) 11M
+* [podman.tcz](https://dl.bintray.com/boot2podman/tinycorelinux/10.x/x86_64/tcz/podman.tcz) 11M
   * runc.tcz 2.8M
   * conmon.tcz 24K
   * cni-plugins.tcz 17M
   * ...
-* [varlink.tcz](https://dl.bintray.com/boot2podman/tinycorelinux/9.x/x86_64/tcz/varlink.tcz) 44K
-* [buildah.tcz](https://dl.bintray.com/boot2podman/tinycorelinux/9.x/x86_64/tcz/buildah.tcz) 6M
+* [varlink.tcz](https://dl.bintray.com/boot2podman/tinycorelinux/10.x/x86_64/tcz/varlink.tcz) 44K
+* [buildah.tcz](https://dl.bintray.com/boot2podman/tinycorelinux/10.x/x86_64/tcz/buildah.tcz) 6M
   * runc.tcz
   * cni-plugins.tcz
   * ...
