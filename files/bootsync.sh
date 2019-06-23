@@ -25,6 +25,11 @@ su "tc" -c "tce-load -i podman.tcz varlink.tcz resolver.tcz buildah.tcz skopeo.t
 /usr/local/etc/init.d/varlink start
 /usr/local/etc/init.d/podman start
 
+if [ -x /usr/local/etc/init.d/crio ]; then
+	su "tc" -c "tce-load -i crio.tcz k3s.tcz"
+	/usr/local/etc/init.d/crio start
+fi
+
 mkdir -p /home/tc/.config/containers
 echo 'cgroup_manager = "cgroupfs"' > /home/tc/.config/containers/libpod.conf
 echo 'no_pivot_root = true' >> /home/tc/.config/containers/libpod.conf
