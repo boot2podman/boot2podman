@@ -31,8 +31,8 @@ Have to do some patching, because of the hard-coded path locations.
 ``` console
 $ tce-load -wi libseccomp-dev glib2-dev
 
-$ go get -d github.com/kubernetes-sigs/cri-o
-$ cd $GOPATH/src/github.com/kubernetes-sigs/cri-o
+$ go get -d github.com/cri-o/cri-o
+$ cd $GOPATH/src/github.com/cri-o/cri-o
 $ sed -e 's|/usr/bin/runc|/usr/local/sbin/runc|' -i lib/config.go
 $ sed -e 's|"/etc/cni|"/usr/local/etc/cni|' -i lib/config_unix.go
 $ sed -e 's|"/opt/cni/bin|"/usr/local/lib/cni|' -i lib/config_unix.go
