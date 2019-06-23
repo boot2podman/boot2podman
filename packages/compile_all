@@ -190,10 +190,10 @@ tce-load -wic libseccomp-dev glib2-dev
 
 go get -d -u github.com/cri-o/cri-o
 cd $GOPATH/src/github.com/cri-o/cri-o
-sed -e 's|/usr/bin/runc|/usr/local/sbin/runc|' -i lib/config.go
-sed -e 's|"/etc/cni|"/usr/local/etc/cni|' -i lib/config_unix.go
-sed -e 's|"/opt/cni/bin|"/usr/local/lib/cni|' -i lib/config_unix.go
-sed -e 's|"/etc/crio|"/usr/local/etc/crio|' -i lib/config_unix.go
+sed -e 's|/usr/bin/runc|/usr/local/sbin/runc|' -i lib/config/config.go
+sed -e 's|"/etc/cni|"/usr/local/etc/cni|' -i lib/config/config_unix.go
+sed -e 's|"/opt/cni/bin|"/usr/local/lib/cni|' -i lib/config/config_unix.go
+sed -e 's|"/etc/crio|"/usr/local/etc/crio|' -i lib/config/config_unix.go
 make binaries
 sudo install -D -m 755 bin/crio /usr/local/bin/crio
 sudo install -D -m 755 bin/conmon /usr/local/lib/crio/conmon
