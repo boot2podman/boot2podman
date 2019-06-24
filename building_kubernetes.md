@@ -176,6 +176,12 @@ They are preloaded automatically for containerd, manually for other runtimes.
 find /usr/local/share/k3s/ -type f | xargs -n 1 sudo podman load -i
 ```
 
+Normally this (starting and loading images ) is done by the bundled init script:
+
+``` console
+$ sudo /usr/local/etc/init.d/k3s start
+```
+
 ## Remote Access
 
 ### Joining nodes

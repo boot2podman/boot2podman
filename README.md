@@ -124,6 +124,10 @@ Podman is run on a single host, Kubernetes is a cluster orchestration system.
 
 We can install `crio`/`crictl` and `k3s`/`kubectl` by [building from source code](building_kubernetes.md).
 
+To include Kubernetes support, please use `boot2podman-kubernetes.iso`.
+
+Start the server and agent with: `sudo /usr/local/etc/init.d/k3s start`
+
 ## Containers
 
 It is also possible to run the build commands (detailed above) using [containers](containers/containers.md).
