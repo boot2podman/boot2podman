@@ -128,6 +128,10 @@ To include Kubernetes support, please use `boot2podman-kubernetes.iso`.
 
 Start the server and agent with: `sudo /usr/local/etc/init.d/k3s start`
 
+Podman can export Kubernetes config with: `sudo podman generate kube`
+
+It can also import Kubernetes YAML config with: `sudo podman play kube`
+
 ## Containers
 
 It is also possible to run the build commands (detailed above) using [containers](containers/containers.md).
