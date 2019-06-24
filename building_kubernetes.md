@@ -143,7 +143,7 @@ $ sudo -b crio
 $ sudo -b k3s server --container-runtime-endpoint /var/run/crio/crio.sock
 ```
 
-Now use the client programs (`crictl` and `kubectl`), to talk fo them:
+Now use the client programs (`crictl` and `kubectl`), to talk to them:
 
 ``` console
 $ sudo crictl pods
