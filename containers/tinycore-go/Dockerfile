@@ -3,6 +3,7 @@ FROM tinycore-compiletc:10.0-x86_64
 # Note: wget https:// needs "openssl"
 
 RUN tce-load -wic openssl \
+    && cd /tmp \
     && wget https://dl.bintray.com/boot2podman/tinycorelinux/10.x/x86_64/tcz/go.tcz \
     && tce-load -wic ca-certificates git \
     && tce-load -ic go.tcz \
