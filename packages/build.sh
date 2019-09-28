@@ -1,5 +1,5 @@
 #!/bin/sh
-go_version=1.12
+go_version=1.12.10
 
 sudo podman container exists boot2podman-build \
 	|| sudo podman run -d --name=boot2podman-build boot2podman-docker-tinycore.bintray.io/tinycore-go:$go_version sleep 3600
