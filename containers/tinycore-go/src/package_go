@@ -1,0 +1,26 @@
+#!/bin/sh
+
+cd
+
+make_tcz() {
+    name=$1
+    shift
+
+    sudo rm -rf /tmp/$name
+    sudo mkdir /tmp/$name
+    for f in $@; do
+        d=`dirname $f`
+        sudo mkdir -p /tmp/$name/$d
+        sudo cp -a $f /tmp/$name/$f
+    done
+
+    rm -f $name.tcz
+    mksquashfs  /tmp/$name $name.tcz
+    md5sum $name.tcz > $name.tcz.md5.txt
+
+    du -hs $name.tcz
+    unsquashfs -ll $name.tcz
+}
+
+make_tcz go-bootstrap /usr/local/go-bootstrap
+make_tcz go /usr/local/go

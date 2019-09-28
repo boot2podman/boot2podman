@@ -1,0 +1,47 @@
+#!/bin/sh -x
+
+cd
+
+tce-load -wic openssl bash
+
+wget https://dl.google.com/go/go1.4-bootstrap-20171003.tar.gz
+
+tar xzf go1.4-bootstrap-20171003.tar.gz
+cd go/src
+export GOROOT_FINAL=/usr/local/go-bootstrap
+CGO_ENABLED=0 ./make.bash
+cd -
+sudo mv go /usr/local/go-bootstrap
+
+export GOROOT=/usr/local/go-bootstrap
+export PATH=$GOROOT/bin:$PATH
+
+go version
+
+wget https://dl.google.com/go/go1.12.10.src.tar.gz
+wget https://raw.githubusercontent.com/boot2podman/boot2podman/master/files/go-1.12-ca-certificates.patch
+
+tar xzf go1.12.10.src.tar.gz
+cd go/src
+patch -Np2 -i ../../go-1.12-ca-certificates.patch
+export GOROOT_FINAL=/usr/local/go
+./make.bash
+cd -
+rm -rf go/VERSION.cache
+rm -rf go/pkg/bootstrap
+rm -rf go/src/runtime/race/race_darwin_amd64.syso
+rm -rf go/src/runtime/race/race_freebsd_amd64.syso
+rm -rf go/src/runtime/race/race_netbsd_amd64.syso
+rm -rf go/src/runtime/race/race_windows_amd64.syso
+rm -rf go/pkg/tool/linux_amd64/api
+rm -rf go/pkg/linux_amd64/cmd
+rm -rf go/pkg/linux_amd64/_dynlink
+rm -rf go/pkg/linux_amd64/_shared
+rm -rf go/pkg/linux_amd64/_testcshared_shared
+rm -rf go/pkg/obj
+sudo mv go /usr/local/go
+
+export GOROOT=/usr/local/go
+export PATH=$GOROOT/bin:$PATH
+
+go version
