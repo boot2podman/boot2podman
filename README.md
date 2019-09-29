@@ -220,13 +220,15 @@ default-docker:
   sigstore-staging: file:///var/lib/atomic/sigstore
 ```
 
-We need to make sure to use "cgroupfs" (not systemd) and to disable "pivot_root" (to run under tmpfs).
+We need to make sure to use "cgroupfs" (not systemd) and to disable "pivot_root" (if run under tmpfs).
 
 [/etc/containers/libpod.conf](files/containers/libpod.conf)
 ``` toml
 # CGroup Manager - valid values are "systemd" and "cgroupfs"
 cgroup_manager = "cgroupfs"
+```
 
+``` toml
 # Whether to use chroot instead of pivot_root in the runtime
 no_pivot_root = true
 ```

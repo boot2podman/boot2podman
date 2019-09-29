@@ -32,7 +32,6 @@ fi
 
 mkdir -p /home/tc/.config/containers
 echo 'cgroup_manager = "cgroupfs"' > /home/tc/.config/containers/libpod.conf
-echo 'no_pivot_root = true' >> /home/tc/.config/containers/libpod.conf
 chown -R tc:staff /home/tc/.config
 
 su "tc" -c "tce-load -i openssh.tcz"
