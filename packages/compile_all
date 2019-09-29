@@ -25,7 +25,7 @@ cd -
 
 # conmon
 
-tce-load -wic libseccomp-dev glib2-dev
+tce-load -wic libseccomp-dev bash glib2-dev
 
 go get -d -u github.com/containers/conmon
 cd $GOPATH/src/github.com/containers/conmon
