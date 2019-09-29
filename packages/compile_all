@@ -197,7 +197,6 @@ cd $GOPATH/src/github.com/cri-o/cri-o
 sed -e 's|/usr/bin/runc|/usr/local/sbin/runc|' -i internal/lib/config/config.go
 sed -e 's|"/etc/cni|"/usr/local/etc/cni|' -i internal/lib/config/config_unix.go
 sed -e 's|"/opt/cni/bin|"/usr/local/lib/cni|' -i internal/lib/config/config_unix.go
-sed -e 's|"/etc/crio|"/usr/local/etc/crio|' -i internal/lib/config/config_unix.go
 make binaries
 sudo install -D -m 755 bin/crio /usr/local/bin/crio
 sudo install -D -m 755 bin/pause /usr/local/lib/crio/pause
