@@ -29,7 +29,7 @@ tce-load -wic libseccomp-dev glib2-dev
 
 go get -d -u github.com/containers/conmon
 cd $GOPATH/src/github.com/containers/conmon
-make bin/conmon
+make
 sudo install -D -m 755 bin/conmon /usr/local/lib/podman/conmon
 sudo install -D -m 755 bin/conmon /usr/local/lib/crio/conmon
 cd -
