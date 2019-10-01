@@ -51,8 +51,6 @@ tce-load -wic libseccomp-dev glib2-dev gpgme-dev bash
 
 go get -d -u github.com/containers/libpod
 cd $GOPATH/src/github.com/containers/libpod
-# revert support for kata containers that broke rootless netns
-git revert --no-commit 5813c8246eb32205cc3e68a293c6cf3eb2ba291d
 sed -e 's|"/etc/cni|"/usr/local/etc/cni|' -i libpod.conf
 sed -e 's|"/etc/cni|"/usr/local/etc/cni|' -i libpod/runtime.go
 sed -e 's|etcDir + "/cni|"/usr/local/etc/cni|' -i libpod/runtime.go
