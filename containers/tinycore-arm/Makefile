@@ -5,13 +5,11 @@ IMAGE_TAG := 9.0-armv6
 TMP_IMAGE_NAME := $(IMAGE_NAME)-tar-builder
 TMP_CONTAINER_NAME := $(IMAGE_NAME)-tar-exporter
 
-QEMU_ARM_STATIC = /usr/bin/qemu-arm-static
-
 .PHONY: all build stop clean
 
 all: build
 
-build: rootfs.tar.gz qemu-arm-static
+build: rootfs.tar.gz
 	$(DOCKER) build -t $(IMAGE_NAME):$(IMAGE_TAG) .
 
 rootfs.tar.gz: squashfs-tools.tar.gz
@@ -22,10 +20,6 @@ rootfs.tar.gz: squashfs-tools.tar.gz
 	$(DOCKER) stop $(TMP_CONTAINER_NAME)
 	$(DOCKER) rm $(TMP_CONTAINER_NAME)
 	$(DOCKER) rmi $(TMP_IMAGE_NAME)
-
-qemu-arm-static:
-	# copy the amd64 binary
-	cp $(QEMU_ARM_STATIC) $@
 
 squashfs-tools.tar.gz:
 	$(DOCKER) run -d --privileged --name $(TMP_CONTAINER_NAME) alpine sleep 180
