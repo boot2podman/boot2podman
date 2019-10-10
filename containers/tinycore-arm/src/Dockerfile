@@ -13,6 +13,7 @@ RUN apk add --no-cache curl unzip mtools \
     && cd rootfs \
     && gzip -dc ../rootfs.gz | cpio -id \
     && rm -f ../rootfs.gz \
+    && rm -r lib/modules \
     && cd usr/bin \
     && patch < /tmp/tce-load.patch \
     && cd ../.. \
