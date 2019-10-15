@@ -38,6 +38,22 @@ $ sudo install -D -m0755 runc /usr/local/sbin/runc
 $ cd -
 ```
 
+### crun installed
+
+The latest version of `crun` can also be installed on the system. It is picked up as an alternative runtime by podman.
+
+``` console
+$ tce-load -wi python3 autoconf automake libtool libtool-dev libcap-dev libseccomp-dev libyajl-dev
+
+$ git clone https://github.com/containers/crun
+$ cd crun
+$ ./autogen.sh
+$ ./configure
+$ make
+$ sudo install -D -m0755 crun /usr/local/bin/crun
+$ cd -
+```
+
 ### conmon installed
 
 The latest version of `conmon` is expected to be installed on the system. Conmon is used to monitor OCI Runtimes.
