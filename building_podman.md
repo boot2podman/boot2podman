@@ -48,7 +48,7 @@ $ tce-load -wi python3 autoconf automake libtool libtool-dev libcap-dev libsecco
 $ git clone https://github.com/containers/crun
 $ cd crun
 $ ./autogen.sh
-$ ./configure
+$ ./configure --disable-systemd
 $ make
 $ sudo install -D -m0755 crun /usr/local/bin/crun
 $ cd -

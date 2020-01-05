@@ -33,7 +33,6 @@ $ tce-load -wi libseccomp-dev glib2-dev
 
 $ go get -d github.com/cri-o/cri-o
 $ cd $GOPATH/src/github.com/cri-o/cri-o
-$ sed -e 's|/usr/bin/runc|/usr/local/sbin/runc|' -i lib/config/config.go
 $ sed -e 's|"/etc/cni|"/usr/local/etc/cni|' -i lib/config/config_unix.go
 $ sed -e 's|"/opt/cni/bin|"/usr/local/lib/cni|' -i lib/config/config_unix.go
 $ sed -e 's|"/etc/crio|"/usr/local/etc/crio|' -i lib/config/config_unix.go
