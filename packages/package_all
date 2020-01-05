@@ -47,6 +47,10 @@ make_tgz() {
 
 make_tcz runc /usr/local/sbin/runc
 
+# crun
+
+make_tcz crun /usr/local/bin/crun
+
 # conmon
 
 make_tcz conmon /usr/local/lib/podman/conmon
