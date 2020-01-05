@@ -225,7 +225,7 @@ mkdir -p `dirname $GOPATH/src/github.com/rancher/k3s`
 git clone --depth 1 https://github.com/rancher/k3s $GOPATH/src/github.com/rancher/k3s
 cd $GOPATH/src/github.com/rancher/k3s
 git pull
-go build -tags "libsqlite3 seccomp no_btrfs netgo osusergo" -ldflags "-w -s" -o k3s ./cmd/server/main.go
+go build -tags "libsqlite3 seccomp no_btrfs netcgo osusergo providerless" -ldflags "-w -s" -o k3s ./cmd/server/main.go
 sudo install -D -m 755 k3s /usr/local/bin/k3s
 sudo ln -sf k3s /usr/local/bin/k3s-server
 sudo ln -sf k3s /usr/local/bin/k3s-agent
