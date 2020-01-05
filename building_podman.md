@@ -95,6 +95,7 @@ $ cd $GOPATH/src/github.com/containers/libpod
 $ sed -e 's|"/etc/cni|"/usr/local/etc/cni|' -i libpod.conf
 $ sed -e 's|"/etc/cni|"/usr/local/etc/cni|' -i libpod/runtime.go
 $ sed -e 's|etcDir + "/cni|"/usr/local/etc/cni|' -i libpod/runtime.go
+$ sed -e 's|"/etc/cni|"/usr/local/etc/cni|' -i pkg/network/config.go
 $ sed -e 's|/usr/libexec/podman/catatonit|/usr/local/lib/podman/catatonit|' -i libpod.conf
 $ sed -e 's|/usr/libexec/podman/catatonit|/usr/local/lib/podman/catatonit|' -i libpod/runtime.go
 $ sed -e 's|/usr/share/containers|/usr/local/share/containers|' -i libpod/runtime.go
