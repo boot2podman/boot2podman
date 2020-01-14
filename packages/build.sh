@@ -6,8 +6,8 @@ sudo podman container exists boot2podman-build \
 $(sudo podman inspect --format '{{.State.Running}}' boot2podman-build) \
 	|| sudo podman start boot2podman-build
 
-sudo podman exec boot2podman-build sh -x < compile_all
-sudo podman exec boot2podman-build sh -x < package_all
+sudo podman exec -i boot2podman-build sh -x < compile_all
+sudo podman exec -i boot2podman-build sh -x < package_all
 
 mnt=$(sudo podman mount boot2podman-build)
 sudo sh -c "cp -p ${mnt}/home/tc/*.tcz* ."
