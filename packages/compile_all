@@ -211,7 +211,7 @@ sed -e 's|"/etc/cni|"/usr/local/etc/cni|' -i pkg/config/config_unix.go
 sed -e 's|"/opt/cni/bin|"/usr/local/lib/cni|' -i pkg/config/config_unix.go
 make binaries
 sudo install -D -m 755 bin/crio /usr/local/bin/crio
-sudo install -D -m 755 bin/pause /usr/local/lib/crio/pause
+sudo install -D -m 755 bin/pinns /usr/local/bin/pinns
 make crio.conf
 sudo install -D -m 644 crio.conf /usr/local/share/crio/crio.conf
 sudo install -D -m 644 crictl.yaml /usr/local/share/crio/crictl.yaml

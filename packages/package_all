@@ -53,7 +53,7 @@ make_tcz crun /usr/local/bin/crun
 
 # conmon
 
-make_tcz conmon /usr/local/lib/podman/conmon
+make_tcz conmon /usr/local/lib/podman/conmon /usr/local/lib/crio/conmon
 
 # cni-plugins
 
@@ -107,7 +107,7 @@ make_tcz skopeo /usr/local/bin/skopeo
 
 # crio
 
-make_tcz crio /usr/local/bin/crio /usr/local/lib/crio/conmon /usr/local/lib/crio/pause \
+make_tcz crio /usr/local/bin/crio /usr/local/bin/pinns \
 /usr/local/share/crio/crio.conf /usr/local/share/crio/crictl.yaml /usr/local/etc/crio/seccomp.json
 
 # k3s
