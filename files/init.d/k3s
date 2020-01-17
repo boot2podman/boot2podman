@@ -2,6 +2,7 @@
 
 options=
 datadir=/usr/local/share
+socket=/var/run/crio/crio.sock
 
 case "${1}" in
 	start)
@@ -15,7 +16,7 @@ case "${1}" in
 			options="$options --tls-san $ip"
 		fi
 		PATH=$PATH:/usr/local/lib/cni \
-		k3s server --container-runtime-endpoint /var/run/crio/crio.sock \
+		k3s server --container-runtime-endpoint unix://$socket \
 		           --no-deploy traefik --no-deploy servicelb \
 		           --log /var/log/k3s.log $options &
 		;;
