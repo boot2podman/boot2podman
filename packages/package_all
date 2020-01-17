@@ -105,6 +105,20 @@ make_tcz buildah /usr/local/bin/buildah
 
 make_tcz skopeo /usr/local/bin/skopeo
 
+# netfilter
+
+make_tgz libnfnetlink /usr/lib/libnfnetlink.so.*
+make_tgz libmnl /usr/lib/libmnl.so.*
+make_tgz libnetfilter_conntrack /usr/lib/libnetfilter_conntrack.so.*
+
+# conntrack
+
+make_tgz conntrack /usr/sbin/conntrack
+
+# ipset
+
+make_tgz ipset /usr/sbin/ipset
+
 # crio
 
 make_tcz crio /usr/local/bin/crio /usr/local/bin/pinns \

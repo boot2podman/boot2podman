@@ -201,6 +201,63 @@ make binary-local # skopeo
 sudo install -D -m 755 skopeo /usr/local/bin/skopeo
 cd -
 
+########################################################################
+
+# libnfnetlink
+
+git clone git://git.netfilter.org/libnfnetlink
+cd libnfnetlink
+git pull
+./autogen.sh
+./configure --prefix=/usr
+make
+sudo make install
+cd -
+
+# libmnl
+
+git clone git://git.netfilter.org/libmnl
+cd libmnl
+git pull
+./autogen.sh
+./configure --prefix=/usr
+make
+sudo make install
+cd -
+
+# libnetfilter_conntrack
+
+git clone git://git.netfilter.org/libnetfilter_conntrack
+cd libnetfilter_conntrack
+git pull
+./autogen.sh
+./configure --prefix=/usr
+make
+sudo make install
+cd -
+
+# conntrack
+
+git clone git://git.netfilter.org/conntrack-tools
+cd conntrack-tools
+git pull
+./autogen.sh
+./configure --disable-systemd --disable-cttimeout --disable-cthelper
+make
+sudo install -D -m 755 src/conntrack /usr/sbin/conntrack
+cd -
+
+# ipset
+
+git clone git://git.netfilter.org/ipset
+cd ipset
+git pull
+./autogen.sh
+./configure --without-kmod
+make
+sudo install -D -m 755 src/ipset /usr/sbin/ipset
+cd -
+
 # crio
 
 tce-load -wic libseccomp-dev glib2-dev

@@ -70,7 +70,7 @@ This program is a requirement for k3s.
 git clone git://git.netfilter.org/ipset
 cd ipset
 ./autogen.sh
-./configure --disable-systemd
+./configure --without-kmod
 make
 sudo install -D -m 755 src/ipset /usr/local/sbin/ipset
 cd -
