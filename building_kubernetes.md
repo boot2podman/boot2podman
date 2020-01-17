@@ -76,33 +76,13 @@ We already built this with [podman](building_podman.md).
 
 We already built this with [podman](building_podman.md).
 
-### libmnl
+### conntrack
 
-This library is a requirement for ipset.
-
-``` console
-git clone git://git.netfilter.org/libmnl
-cd libmnl
-./autogen.sh
-./configure
-make
-sudo make install
-cd -
-```
+As needed for cri-o, build [conntrack](building_netfilter.md).
 
 ### ipset
 
-This program is a requirement for k3s.
-
-``` console
-git clone git://git.netfilter.org/ipset
-cd ipset
-./autogen.sh
-./configure
-make
-sudo install -D -m 755 src/ipset /usr/local/sbin/ipset
-cd -
-```
+As needed for k3s, build [ipset](building_netfilter.md).
 
 ## Build and Run Dependencies
 
