@@ -22,6 +22,7 @@ tce-load -wic libseccomp-dev bash
 
 go get -d -u github.com/opencontainers/runc
 cd $GOPATH/src/github.com/opencontainers/runc
+git checkout v1.0.0-rc10
 make runc
 sudo install -D -m0755 runc /usr/local/sbin/runc
 cd -
