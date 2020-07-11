@@ -178,6 +178,7 @@ tce-load -wic autoconf automake libcap-dev
 
 git clone https://github.com/rootless-containers/slirp4netns
 cd slirp4netns
+git checkout v0.4.2
 git pull
 ./autogen.sh
 ./configure
