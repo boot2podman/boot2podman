@@ -13,6 +13,9 @@ test -d $GOPATH/src/github.com/containers/buildah && \
 test -d $GOPATH/src/github.com/cri-o/cri-o && \
 ( cd $GOPATH/src/github.com/cri-o/cri-o && git reset --hard HEAD )
 
+test -d $GOPATH/src/github.com/rancher/k3s && \
+( cd $GOPATH/src/github.com/rancher/k3s && git reset --hard HEAD )
+
 # runc
 
 tce-load -wic libseccomp-dev bash
@@ -281,8 +284,10 @@ cd -
 tce-load -wic libseccomp-dev sqlite3-dev
 
 mkdir -p `dirname $GOPATH/src/github.com/rancher/k3s`
-git clone --depth 1 https://github.com/rancher/k3s $GOPATH/src/github.com/rancher/k3s
+git clone --depth 1 --branch "release-1.17" https://github.com/rancher/k3s $GOPATH/src/github.com/rancher/k3s
 cd $GOPATH/src/github.com/rancher/k3s
+git fetch --depth 1 origin release-1.17
+git checkout release-1.17
 git pull
 go build -tags "libsqlite3 seccomp no_btrfs netcgo osusergo providerless" -ldflags "-w -s" -o k3s ./cmd/server/main.go
 sudo install -D -m 755 k3s /usr/local/bin/k3s
