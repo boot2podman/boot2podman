@@ -92,6 +92,8 @@ $ tce-load -wi libseccomp-dev glib2-dev gpgme-dev bash
 
 $ go get -d github.com/containers/libpod
 $ cd $GOPATH/src/github.com/containers/libpod
+$ git checkout v1.9
+$ git pull --ff-only
 $ sed -e 's|"/etc/cni|"/usr/local/etc/cni|' -i libpod.conf
 $ sed -e 's|"/etc/cni|"/usr/local/etc/cni|' -i libpod/runtime.go
 $ sed -e 's|"/etc/cni|"/usr/local/etc/cni|' -i pkg/network/config.go
