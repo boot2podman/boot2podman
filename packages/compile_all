@@ -289,9 +289,9 @@ cd -
 tce-load -wic libseccomp-dev sqlite3-dev
 
 mkdir -p `dirname $GOPATH/src/github.com/rancher/k3s`
-git clone --depth 1 --branch "release-1.17" https://github.com/rancher/k3s $GOPATH/src/github.com/rancher/k3s
+git clone --depth 1 --branch v1.17.4+k3s1 https://github.com/rancher/k3s $GOPATH/src/github.com/rancher/k3s
 cd $GOPATH/src/github.com/rancher/k3s
-git fetch --depth 1 origin release-1.17
+git fetch --depth 1 origin v1.17.4+k3s1
 git checkout FETCH_HEAD
 go build -tags "libsqlite3 seccomp no_btrfs netcgo osusergo providerless" -ldflags "-w -s" -o k3s ./cmd/server/main.go
 sudo install -D -m 755 k3s /usr/local/bin/k3s
