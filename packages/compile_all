@@ -191,6 +191,7 @@ tce-load -wic libseccomp-dev lvm2-dev glib2-dev gpgme-dev
 
 go get -d -u github.com/containers/buildah
 cd $GOPATH/src/github.com/containers/buildah
+git checkout release-v1.14
 sed -e 's|"/etc/cni|"/usr/local/etc/cni|' -i util/types.go
 sed -e 's|/usr/libexec/cni:/opt/cni/bin|/usr/local/lib/cni|' -i util/types.go
 make buildah
