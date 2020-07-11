@@ -204,8 +204,8 @@ tce-load -wic lvm2-dev gpgme-dev
 
 go get -d -u github.com/containers/skopeo
 cd $GOPATH/src/github.com/containers/skopeo
-make binary-local # skopeo
-sudo install -D -m 755 skopeo /usr/local/bin/skopeo
+make bin/skopeo
+sudo install -D -m 755 bin/skopeo /usr/local/bin/skopeo
 cd -
 
 ########################################################################
