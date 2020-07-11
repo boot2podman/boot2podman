@@ -293,7 +293,6 @@ git clone --depth 1 --branch "release-1.17" https://github.com/rancher/k3s $GOPA
 cd $GOPATH/src/github.com/rancher/k3s
 git fetch --depth 1 origin release-1.17
 git checkout FETCH_HEAD
-git pull
 go build -tags "libsqlite3 seccomp no_btrfs netcgo osusergo providerless" -ldflags "-w -s" -o k3s ./cmd/server/main.go
 sudo install -D -m 755 k3s /usr/local/bin/k3s
 sudo ln -sf k3s /usr/local/bin/k3s-server
