@@ -1,11 +1,11 @@
 diff --git a/src/crypto/x509/root_linux.go b/src/crypto/x509/root_linux.go
-index aa1785e..755af89 100644
+index 267775d..4ed3b88 100644
 --- a/src/crypto/x509/root_linux.go
 +++ b/src/crypto/x509/root_linux.go
-@@ -11,4 +11,5 @@ var certFiles = []string{
- 	"/etc/ssl/ca-bundle.pem",                            // OpenSUSE
+@@ -12,4 +12,5 @@ var certFiles = []string{
  	"/etc/pki/tls/cacert.pem",                           // OpenELEC
  	"/etc/pki/ca-trust/extracted/pem/tls-ca-bundle.pem", // CentOS/RHEL 7
+ 	"/etc/ssl/cert.pem",                                 // Alpine Linux
 +	"/usr/local/etc/ssl/certs/ca-certificates.crt",      // TinyCore
  }
 diff --git a/src/crypto/x509/root_unix.go b/src/crypto/x509/root_unix.go

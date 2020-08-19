@@ -58,12 +58,12 @@ go version go1.4-bootstrap-20170531 linux/amd64
 Build and package:
 
 ``` sh
-wget https://dl.google.com/go/go1.12.10.src.tar.gz
-wget https://raw.githubusercontent.com/boot2podman/boot2podman/master/files/go-1.12-ca-certificates.patch
+wget https://dl.google.com/go/go1.13.8.src.tar.gz
+wget https://raw.githubusercontent.com/boot2podman/boot2podman/master/files/go-1.13-ca-certificates.patch
 
-tar xzf go1.12.10.src.tar.gz
+tar xzf go1.13.8.src.tar.gz
 cd go/src
-patch -Np2 -i ../../go-1.12-ca-certificates.patch
+patch -Np2 -i ../../go-1.13-ca-certificates.patch
 export GOROOT_FINAL=/usr/local/go
 ./make.bash
 cd -
@@ -91,7 +91,7 @@ $ tce-load -i go.tcz
 $ export GOROOT=/usr/local/go
 $ export PATH=$GOROOT/bin:$PATH
 $ go version
-go version go1.12.10 linux/amd64
+go version go1.13.8 linux/amd64
 ```
 
 ## Pre-requisites
