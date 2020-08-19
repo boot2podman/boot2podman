@@ -1,43 +1,25 @@
-tc10_x86_64 (on corepure64)
+tce-load -i compiletc perl5 python3.6
 
-tce-load -i compiletc perl5 ncursesw-dev bash cloog-dev mpc-dev udev-lib-dev texinfo coreutils glibc_apps
+cd glibc-2.30
 
-----------
+patch -Np1 -i ../glibc-2.30-fhs-1.patch
 
-cd glibc-2.28
+patch -Np1 -i ../glibc-uclibc-compat-ld-cache.patch
 
-patch -Np1 -i ../glibc-2.28-fhs-1.patch
-
-ln -sfv /tools/lib/gcc /usr/lib
-
-mkdir /lib64
-ln -sfv ../lib/ld-linux-x86-64.so.2 /lib64
-
-rm -f /usr/include/limits.h
+sed -i '/asm.socket.h/a# include <linux/sockios.h>' sysdeps/unix/sysv/linux/bits/socket.h
 
 mkdir build
 cd build
 
-echo "CFLAGS += -mtune=generic -Os -pipe" > configparms
-
-CC="gcc -isystem /usr/lib/gcc/x86_64-pc-linux-gnu/8.2.0/include -isystem /usr/include" ../configure --prefix=/usr --libexecdir=/usr/lib/glibc --enable-kernel=4.8.17 --enable-stack-protector=strong libc_cv_slibdir=/lib --disable-werror
+CFLAGS="-mtune=generic -Os -pipe" CXXFLAGS="-mtune=generic -Os -pipe" ../configure --prefix=/usr --disable-werror --libexecdir=/usr/lib/glibc --enable-kernel=4.19.10 --enable-stack-protector=strong --with-headers=/usr/include libc_cv_slibdir=/lib --enable-obsolete-rpc
 
 find . -name config.make -type f -exec sed -i 's/-g -O2//g' {} \;
 find . -name config.status -type f -exec sed -i 's/-g -O2//g' {} \;
 
-make [6m32.927s]
+make [8m 49.28s]
 
 touch /etc/ld.so.conf
 
 sed '/test-installation/s@$(PERL)@echo not running@' -i ../Makefile
 
-make install [install install_root=/tmp/pkg]
-
-cp ../nscd/nscd.conf /etc/nscd.conf
-mkdir -p /var/cache/nscd
-
-make localedata/install-locales [9m28.840s]
-
-sed -i 's@lib64/ld-linux-x86-64.so.2@lib/ld-linux-x86-64.so.2@' /usr/bin/ldd
-
-[copy tc /etc/nsswitch.conf and /etc/ld.so.conf files to $TC/etc]
+sudo make install [install_root=/tmp/pkg]

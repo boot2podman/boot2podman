@@ -1,10 +1,10 @@
---- tce-load.orig	2015-11-17 09:33:16.000000000 +0900
-+++ tce-load	2015-11-17 09:40:06.000000000 +0900
+--- tce-load.orig	2020-02-16 13:21:39.000000000 +0100
++++ tce-load	2020-02-16 13:25:08.192355402 +0100
 @@ -81,15 +81,15 @@
  
  copyInstall() {
  	[ -d /mnt/test ] || sudo /bin/mkdir -p /mnt/test
--	sudo /bin/mount $1 /mnt/test -t squashfs -o loop,ro,bs=4096
+-	sudo /bin/mount $1 /mnt/test -t squashfs -o loop,ro
 +	sudo /usr/local/bin/unsquashfs -f -d /mnt/test $1
  	if [ "$?" == 0 ]; then
  		if [ "$(ls -A /mnt/test)" ]; then

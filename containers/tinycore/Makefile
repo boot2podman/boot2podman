@@ -1,7 +1,7 @@
 DOCKER = sudo podman
 
 IMAGE_NAME := tinycore
-IMAGE_TAG := 10.0-x86_64
+IMAGE_TAG := 11.0-x86_64
 TMP_IMAGE_NAME := $(IMAGE_NAME)-tar-builder
 TMP_CONTAINER_NAME := $(IMAGE_NAME)-tar-exporter
 
