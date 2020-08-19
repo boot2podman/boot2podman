@@ -2,7 +2,7 @@
 
 cd
 
-tce-load -wic openssl bash
+tce-load -wic openssl-1.1.1 bash
 
 wget https://dl.google.com/go/go1.4-bootstrap-20171003.tar.gz
 
@@ -18,12 +18,12 @@ export PATH=$GOROOT/bin:$PATH
 
 go version
 
-wget https://dl.google.com/go/go1.12.10.src.tar.gz
-wget https://raw.githubusercontent.com/boot2podman/boot2podman/master/files/go-1.12-ca-certificates.patch
+wget https://dl.google.com/go/go1.13.8.src.tar.gz
+wget https://raw.githubusercontent.com/boot2podman/boot2podman/master/files/go-1.13-ca-certificates.patch
 
-tar xzf go1.12.10.src.tar.gz
+tar xzf go1.13.8.src.tar.gz
 cd go/src
-patch -Np2 -i ../../go-1.12-ca-certificates.patch
+patch -Np2 -i ../../go-1.13-ca-certificates.patch
 export GOROOT_FINAL=/usr/local/go
 ./make.bash
 cd -
