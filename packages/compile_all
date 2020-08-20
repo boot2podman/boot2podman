@@ -22,7 +22,6 @@ tce-load -wic libseccomp-dev bash
 
 go get -d -u github.com/opencontainers/runc
 cd $GOPATH/src/github.com/opencontainers/runc
-git checkout v1.0.0-rc10
 make runc
 sudo install -D -m0755 runc /usr/local/sbin/runc
 cd -
@@ -68,7 +67,6 @@ tce-load -wic libseccomp-dev glib2-dev gpgme-dev bash
 
 go get -d -u github.com/containers/libpod
 cd $GOPATH/src/github.com/containers/libpod
-git checkout v1.9
 git pull --ff-only
 sed -e 's|"/etc/cni|"/usr/local/etc/cni|' -i libpod.conf
 sed -e 's|"/etc/cni|"/usr/local/etc/cni|' -i libpod/runtime.go
@@ -193,7 +191,6 @@ tce-load -wic libseccomp-dev lvm2-dev glib2-dev gpgme-dev
 
 go get -d -u github.com/containers/buildah
 cd $GOPATH/src/github.com/containers/buildah
-git checkout release-v1.14
 sed -e 's|"/etc/cni|"/usr/local/etc/cni|' -i util/types.go
 sed -e 's|/usr/libexec/cni:/opt/cni/bin|/usr/local/lib/cni|' -i util/types.go
 make buildah
@@ -206,7 +203,6 @@ tce-load -wic lvm2-dev gpgme-dev
 
 go get -d -u github.com/containers/skopeo
 cd $GOPATH/src/github.com/containers/skopeo
-git checkout v0.1.40
 make binary-local # skopeo
 sudo install -D -m 755 skopeo /usr/local/bin/skopeo
 cd -
@@ -274,7 +270,6 @@ tce-load -wic libseccomp-dev glib2-dev
 
 go get -d -u github.com/cri-o/cri-o
 cd $GOPATH/src/github.com/cri-o/cri-o
-git checkout release-1.17
 sed -e 's|"/etc/cni|"/usr/local/etc/cni|' -i pkg/config/config_unix.go
 sed -e 's|"/opt/cni/bin|"/usr/local/lib/cni|' -i pkg/config/config_unix.go
 make binaries
@@ -290,10 +285,9 @@ cd -
 tce-load -wic libseccomp-dev sqlite3-dev
 
 mkdir -p `dirname $GOPATH/src/github.com/rancher/k3s`
-git clone --depth 1 --branch v1.17.4+k3s1 https://github.com/rancher/k3s $GOPATH/src/github.com/rancher/k3s
+git clone --depth 1 https://github.com/rancher/k3s $GOPATH/src/github.com/rancher/k3s
 cd $GOPATH/src/github.com/rancher/k3s
-git fetch --depth 1 origin v1.17.4+k3s1
-git checkout FETCH_HEAD
+git pull
 go build -tags "libsqlite3 seccomp no_btrfs netcgo osusergo providerless" -ldflags "-w -s" -o k3s ./cmd/server/main.go
 sudo install -D -m 755 k3s /usr/local/bin/k3s
 sudo ln -sf k3s /usr/local/bin/k3s-server
