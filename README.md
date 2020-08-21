@@ -1,3 +1,9 @@
+# DEPRECATED
+
+Boot2podman is now deprecated. Users should try using [Fedora](https://getfedora.org/) instead.
+
+Podman itself is **only** available for Linux systems, not Mac or Windows.
+
 ![boot2podman logo](logo.png)
 # boot2podman
 
